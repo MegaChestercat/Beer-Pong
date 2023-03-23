@@ -1,8 +1,8 @@
 ﻿
 namespace BeerPong
 {
-    public class VBody
+    public abstract class VBody
     {
-
+        public abstract void DrawBody(ref Canvas canvas);
     }
 }

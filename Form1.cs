@@ -7,6 +7,7 @@ namespace BeerPong
         VPole pole, pole2;
         Random rnd;
         VBox box;
+        Glass glass;
 
         public Form1()
         {
@@ -18,6 +19,7 @@ namespace BeerPong
             canvas.FastClear();
 
             box = new VBox(rnd);
+            glass = new Glass();
             /*
             a = new VPoint(rnd.Next(150, 500), rnd.Next(150, 400));
             b = new VPoint(rnd.Next(150, 500), rnd.Next(150, 400));
@@ -31,7 +33,8 @@ namespace BeerPong
 
         private void Init()
         {
-            box.DrawBox(ref canvas);
+            box.DrawBody(ref canvas);
+            glass.DrawBody(ref canvas);
             /*
             pole.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
             a.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
@@ -44,7 +47,8 @@ namespace BeerPong
         private void timer1_Tick(object sender, EventArgs e)
         {
             canvas.FastClear();
-            box.DrawBox(ref canvas);
+            box.DrawBody(ref canvas);
+            glass.DrawBody(ref canvas);
             /*
             pole.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
             a.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);

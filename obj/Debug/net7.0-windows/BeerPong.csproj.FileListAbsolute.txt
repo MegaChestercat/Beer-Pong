@@ -16,3 +16,4 @@ C:\Users\a\Visual Studio Projects\BeerPong\obj\Debug\net7.0-windows\refint\BeerP
 C:\Users\a\Visual Studio Projects\BeerPong\obj\Debug\net7.0-windows\BeerPong.pdb
 C:\Users\a\Visual Studio Projects\BeerPong\obj\Debug\net7.0-windows\BeerPong.genruntimeconfig.cache
 C:\Users\a\Visual Studio Projects\BeerPong\obj\Debug\net7.0-windows\ref\BeerPong.dll
+C:\Users\a\Visual Studio Projects\BeerPong\obj\Debug\net7.0-windows\BeerPong.Resource1.resources

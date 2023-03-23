@@ -1,7 +1,7 @@
 ﻿
 namespace BeerPong
 {
-    public class VBox
+    public class VBox: VBody
     {
         VPoint a, b, c, d;
         VPole p1, p2, p3, p4, p5, p6;
@@ -15,7 +15,7 @@ namespace BeerPong
             a = new VPoint(100f, 9f, x, y);
             b = new VPoint((int)a.Pos.X + 100, (int)a.Pos.Y);
             c = new VPoint((int)a.Pos.X, (int)a.Pos.Y + 100);
-            d = new VPoint((int)b.Pos.X + 100, (int)a.Pos.Y + 100);
+            d = new VPoint((int)b.Pos.X, (int)a.Pos.Y + 100);
             p1 = new VPole(a, b);
             p2 = new VPole(c, d);
             p3 = new VPole(a, c);
@@ -24,7 +24,7 @@ namespace BeerPong
             p6 = new VPole(b, c);
         }
 
-        public void DrawBox(ref Canvas canvas)
+        public override void DrawBody(ref Canvas canvas)
         {
             a.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
             b.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
