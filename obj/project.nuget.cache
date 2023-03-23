@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1mE+f873sBfxabnV0FLXzPuZsQfH8Hyq3Y6TReiFNOkGkYhach+pSgSQc8VKTgbUIy4K/9d85flq2hDELls1jA==",
+  "dgSpecHash": "uvV7/HCPp1A23y2WgaMpvrppzMN7PTMrwxGaBSNCnKO/Z8HK4W9TqoMdmg6xEJVj5/1Ggxo5KMepFPpq4SfZgw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\a\\Visual Studio Projects\\BeerPong\\BeerPong.csproj",
+  "projectFilePath": "C:\\Users\\hecto\\Source\\Repos\\Beer-Pong\\BeerPong.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
