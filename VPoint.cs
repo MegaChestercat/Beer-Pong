@@ -5,7 +5,7 @@
         Vec2 pos, old, vel, gravity;
         float groundFriction = 0.7f;
         public float Mass;
-        float radius, diameter, m, friction = 0.97f;
+        public float radius, diameter, m, friction = 0.97f;
         Color c;
         SolidBrush brush;
 

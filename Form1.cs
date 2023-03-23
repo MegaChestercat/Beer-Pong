@@ -7,6 +7,7 @@ namespace BeerPong
         VPole pole, pole2;
         Random rnd;
         VBox box;
+        VSolver solver;
         Glass glass;
 
         public Form1()
@@ -20,6 +21,7 @@ namespace BeerPong
 
             box = new VBox(rnd);
             glass = new Glass();
+            solver = new VSolver()
             /*
             a = new VPoint(rnd.Next(150, 500), rnd.Next(150, 400));
             b = new VPoint(rnd.Next(150, 500), rnd.Next(150, 400));
