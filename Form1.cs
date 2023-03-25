@@ -9,6 +9,9 @@ namespace BeerPong
         VBox box;
         VSolver solver;
         Glass glass;
+        VPlatform platform;
+
+        private readonly KonamiSequence _konamiSequence = new KonamiSequence();
 
         public Form1()
         {
@@ -19,7 +22,8 @@ namespace BeerPong
             rnd = new Random();
             canvas.FastClear();
 
-            box = new VBox(rnd);
+            platform = new VPlatform();
+            box = new VBox(100, 150, 50, 50, 1);
             glass = new Glass();
             //solver = new VSolver();
             /*
@@ -37,6 +41,7 @@ namespace BeerPong
         {
             box.DrawBody(ref canvas);
             glass.DrawBody(ref canvas);
+            platform.DrawBody(ref canvas);
             /*
             pole.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
             a.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
@@ -51,6 +56,7 @@ namespace BeerPong
             canvas.FastClear();
             box.DrawBody(ref canvas);
             glass.DrawBody(ref canvas);
+            platform.DrawBody(ref canvas);
             /*
             pole.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
             a.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
@@ -58,6 +64,15 @@ namespace BeerPong
             c.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
             d.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);*/
             PCT_CANVAS.Invalidate();
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (_konamiSequence.IsCompletedBy(e.KeyCode))
+            {
+                MessageBox.Show("Konamiiii");
+                _konamiSequence.EasterEgg();
+            }
         }
     }
 }

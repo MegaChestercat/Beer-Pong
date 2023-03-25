@@ -145,6 +145,7 @@
             Controls.Add(PCT_CANVAS);
             Name = "Form1";
             Text = "Form1";
+            KeyDown += Form1_KeyDown;
             ((System.ComponentModel.ISupportInitialize)PCT_CANVAS).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

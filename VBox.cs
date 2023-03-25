@@ -1,21 +1,28 @@
 ﻿
+using System.Runtime.CompilerServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+
 namespace BeerPong
 {
     public class VBox: VBody
     {
+        int id, width, height;
+        Vec2 pos;
         VPoint a, b, c, d;
         VPole p1, p2, p3, p4, p5, p6;
-        Random ran;
+        Random ran = new Random();
 
-        public VBox(Random rnd)
+        public VBox(int x, int y, int width, int height, int id)
         {
-            ran = rnd;
-            int x = (int)ran.Next(100, 300);
-            int y = (int)ran.Next(100, 300);
-            a = new VPoint(100f, 9f, x, y);
-            b = new VPoint((int)a.Pos.X + 100, (int)a.Pos.Y);
-            c = new VPoint((int)a.Pos.X, (int)a.Pos.Y + 100);
-            d = new VPoint((int)b.Pos.X, (int)a.Pos.Y + 100);
+            this.id = id;
+            this.width = width;
+            this.height = height;
+            pos = new Vec2(x, y);
+            
+            a = new VPoint(x - (width / 2), y - (height / 2), ran.Next(5), ran.Next(-2, 2), id);
+            b = new VPoint(x + (width / 2), y - (height / 2), id + 1);
+            c = new VPoint(x + (width / 2), y + (height / 2), id + 2);
+            d = new VPoint(x - (width / 2), y + (height / 2), id + 3);
             p1 = new VPole(a, b);
             p2 = new VPole(c, d);
             p3 = new VPole(a, c);
