@@ -24,7 +24,7 @@ namespace BeerPong
             p6 = new VPole(b, c);
         }
 
-        public void DrawBox(ref Canvas canvas)
+        public void DrawBox(Canvas canvas)
         {
             a.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
             b.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);

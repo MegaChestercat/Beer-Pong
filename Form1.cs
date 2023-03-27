@@ -8,6 +8,24 @@ namespace BeerPong
         Random rnd;
         VBox box;
 
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+            canvas.FastClear();
+            //box.DrawBox(ref canvas);
+            circle.DrawCircle(canvas);
+            label1.Text = circle.ToString();
+            PCT_CANVAS.Invalidate();
+            //timer1.Enabled= false;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        VCircle circle;
+
         public Form1()
         {
             InitializeComponent();
@@ -18,40 +36,13 @@ namespace BeerPong
             canvas.FastClear();
 
             box = new VBox(rnd);
-            /*
-            a = new VPoint(rnd.Next(150, 500), rnd.Next(150, 400));
-            b = new VPoint(rnd.Next(150, 500), rnd.Next(150, 400));
-            c = new VPoint((int)a.Pos.X, (int)a.Pos.Y);
-            d = new VPoint((int)c.Pos.X + 80, (int)a.Pos.Y);
-            pole = new VPole(a, b);
-            pole2 = new VPole(c, d);*/
+            circle = new VCircle(70, new VPoint(100, 100));
 
             Init();
         }
 
         private void Init()
         {
-            box.DrawBox(ref canvas);
-            /*
-            pole.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
-            a.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
-            b.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
-            c.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
-            d.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);*/
-            PCT_CANVAS.Invalidate();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            canvas.FastClear();
-            box.DrawBox(ref canvas);
-            /*
-            pole.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
-            a.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
-            b.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
-            c.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
-            d.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);*/
-            PCT_CANVAS.Invalidate();
         }
     }
 }

@@ -8,6 +8,7 @@
         float radius, diameter, m, friction = 0.97f;
         Color c;
         SolidBrush brush;
+        public string position;
 
         public Vec2 Pos
         {
@@ -34,7 +35,7 @@
             friction = 0.97f;
             groundFriction = 0.7f;
 
-            gravity = new Vec2(0, 1);
+            gravity = new Vec2(0, 0);
 
             radius = 5;
             diameter = radius + radius;
@@ -87,9 +88,15 @@
 
         public void Render(Graphics g, int width, int height)
         {
-            Update(width, height);
+            //Update(width, height);
             Constraints(width, height);
             g.FillEllipse(brush, pos.X - radius, pos.Y - radius, diameter, diameter);
+        }
+
+        public override string ToString()
+        {
+            string debugg = pos.X.ToString()+", " + pos.Y.ToString();
+            return debugg;     
         }
     }
 }
