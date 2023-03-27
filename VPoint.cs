@@ -5,6 +5,7 @@ namespace BeerPong
     public class VPoint
     {
         bool isPinned = false;
+        bool fromBody = false;
         Vec2 pos, old, vel, gravity;
         float groundFriction = 0.7f;
         public float Mass;
@@ -24,10 +25,20 @@ namespace BeerPong
                 pos = value;
             }
         }
+        public Vec2 Old
+        {
+            get { return old; }
+            set { old = value; }
+        }
         public int Id
         {
             get { return id; }
             set { id = value; }
+        }
+        public bool FromBody
+        {
+            get { return fromBody; }
+            set { fromBody = value; }
         }
         public float Diameter
         {
@@ -45,6 +56,16 @@ namespace BeerPong
         {
             get { return isPinned; }
             set { isPinned = value; }
+        }
+        public float X
+        {
+            get { return pos.X; }
+            set { pos.X = value; }
+        }
+        public float Y
+        {
+            get { return pos.Y; }
+            set { pos.Y = value; }
         }
 
         public VPoint(int x, int y)
@@ -85,9 +106,10 @@ namespace BeerPong
             old = new Vec2(pos.X + velX, pos.Y + velY);
         }
 
-        public VPoint(int x, int y, float vx, float vy, int id)
+        public VPoint(int x, int y, float vx, float vy, int id, bool Pinned)
         {
             this.id = id;
+            isPinned = Pinned;
             Init(x, y, vx, vy);
         }
 
@@ -114,8 +136,8 @@ namespace BeerPong
 
         public void Pin()
         {
-            brush = new SolidBrush(Color.Gray);
-            radius = 10;
+            brush = new SolidBrush(Color.FromArgb(226, 148, 58));
+            radius = 15;
             diameter = radius + radius;
             isPinned = true;
         }
@@ -128,12 +150,13 @@ namespace BeerPong
 
             vel = (pos - old) * friction;
 
+            /*
             if (pos.Y >= height - radius && vel.MagSqr() > 0.000001)
             {
                 m = vel.Length();
                 vel /= m;
                 vel *= (m * groundFriction);
-            }
+            }*/
 
             old = pos;
             pos += vel + gravity;
@@ -149,6 +172,9 @@ namespace BeerPong
 
         public void Render(Graphics g, int width, int height)
         {
+            if (fromBody)
+                return;
+            
             Update(width, height);
             Constraints(width, height);
             g.FillEllipse(brush, pos.X - radius, pos.Y - radius, diameter, diameter);

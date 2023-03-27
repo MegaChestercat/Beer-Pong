@@ -38,6 +38,12 @@
             tonPoints = new Label();
             kosPoints = new Label();
             label1 = new Label();
+            gameTimer = new System.Windows.Forms.Timer(components);
+            startBTN = new Button();
+            pauseBTN = new Button();
+            label2 = new Label();
+            timerCounter = new Label();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)PCT_CANVAS).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -52,11 +58,15 @@
             // PCT_CANVAS
             // 
             PCT_CANVAS.BackColor = Color.Black;
+            PCT_CANVAS.Enabled = false;
             PCT_CANVAS.Location = new Point(14, 110);
             PCT_CANVAS.Name = "PCT_CANVAS";
             PCT_CANVAS.Size = new Size(924, 517);
             PCT_CANVAS.TabIndex = 0;
             PCT_CANVAS.TabStop = false;
+            PCT_CANVAS.MouseDown += PCT_CANVAS_MouseDown;
+            PCT_CANVAS.MouseMove += PCT_CANVAS_MouseMove;
+            PCT_CANVAS.MouseUp += PCT_CANVAS_MouseUp;
             // 
             // tonayanLBL
             // 
@@ -129,12 +139,72 @@
             label1.TabIndex = 7;
             label1.Text = "Mexican Beer Pong";
             // 
+            // gameTimer
+            // 
+            gameTimer.Interval = 1000;
+            gameTimer.Tick += gameTimer_Tick;
+            // 
+            // startBTN
+            // 
+            startBTN.Location = new Point(373, 65);
+            startBTN.Name = "startBTN";
+            startBTN.Size = new Size(75, 23);
+            startBTN.TabIndex = 8;
+            startBTN.Text = "Play Game";
+            startBTN.UseVisualStyleBackColor = true;
+            startBTN.Click += startBTN_Click;
+            // 
+            // pauseBTN
+            // 
+            pauseBTN.Location = new Point(454, 65);
+            pauseBTN.Name = "pauseBTN";
+            pauseBTN.Size = new Size(95, 23);
+            pauseBTN.TabIndex = 9;
+            pauseBTN.Text = "Pause Game";
+            pauseBTN.UseVisualStyleBackColor = true;
+            pauseBTN.Click += pauseBTN_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(639, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(139, 21);
+            label2.TabIndex = 10;
+            label2.Text = "Remaining Time:";
+            // 
+            // timerCounter
+            // 
+            timerCounter.AutoSize = true;
+            timerCounter.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            timerCounter.Location = new Point(784, 9);
+            timerCounter.Name = "timerCounter";
+            timerCounter.Size = new Size(19, 21);
+            timerCounter.TabIndex = 11;
+            timerCounter.Text = "0";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(820, 9);
+            label3.Name = "label3";
+            label3.Size = new Size(71, 21);
+            label3.TabIndex = 12;
+            label3.Text = "seconds";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(950, 639);
+            Controls.Add(label3);
+            Controls.Add(timerCounter);
+            Controls.Add(label2);
+            Controls.Add(pauseBTN);
+            Controls.Add(startBTN);
             Controls.Add(label1);
             Controls.Add(kosPoints);
             Controls.Add(tonPoints);
@@ -164,5 +234,11 @@
         private Label tonPoints;
         private Label kosPoints;
         private Label label1;
+        private System.Windows.Forms.Timer gameTimer;
+        private Button startBTN;
+        private Button pauseBTN;
+        private Label label2;
+        private Label timerCounter;
+        private Label label3;
     }
 }
