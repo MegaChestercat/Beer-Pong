@@ -7,12 +7,38 @@
         Vec2 dxy, offset;
         Pen brush;
 
+        public Vec2 P1
+        {
+            get { return a.Pos; }
+        }
+        public Vec2 P2
+        {
+            get { return b.Pos; }
+        }
+
+        public float aX
+        {
+            get { return a.Pos.X; }
+        }
+        public float aY
+        {
+            get { return a.Pos.Y; }
+        }
+        public float bX
+        {
+            get { return b.Pos.X; }
+        }
+        public float bY
+        {
+            get { return b.Pos.Y; }
+        }
+
         public VPole(VPoint a, VPoint b)
         {
             this.a = a;
             this.b = b;
-            stiffness = 25f;
-            damp = 0.05f;
+            stiffness = 2.5f;
+            damp = 0.5f;
             length = a.Pos.Distance(b.Pos);
             brush = new Pen(Color.Green);
             tot = a.Mass + b.Mass;
@@ -27,8 +53,12 @@
             dis = dxy.Length();
             diff = stiffness * (length - dis) / dis;
             offset = dxy * diff * damp;
-            a.Pos -= offset * m1;
-            b.Pos += offset * m2;
+
+            if (!a.IsPinned)
+                a.Pos -= offset * m1;
+
+            if (!b.IsPinned)
+                b.Pos += offset * m2;
         }
 
         public void Render(Graphics g, int width, int height)
