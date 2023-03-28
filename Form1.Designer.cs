@@ -218,8 +218,12 @@
             Controls.Add(KosakoLBL);
             Controls.Add(tonayanLBL);
             Controls.Add(PCT_CANVAS);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             KeyDown += Form1_KeyDown;
             ((System.ComponentModel.ISupportInitialize)PCT_CANVAS).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

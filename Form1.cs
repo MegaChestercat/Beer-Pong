@@ -50,11 +50,11 @@ namespace BeerPong
             {
                 boxes[counter].React(ref canvas, balls, PCT_CANVAS.Width, PCT_CANVAS.Height);
             }
-            
+
 
             if (isMouseDown && isLeftButton && ballID != -1)
                 canvas.g.DrawLine(backTrajectory, balls[ballID].X, balls[ballID].Y, trigger.X, trigger.Y);
-           
+
             PCT_CANVAS.Invalidate();
         }
 
@@ -159,6 +159,33 @@ namespace BeerPong
         private void gameTitle_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             MessageBox.Show("Mexican Beer Pong \n\nProgrammers: \n\nMario Arturo Sánchez Ruelas \n\n\nDesigners: \n\nMario Arturo Sánchez Ruelas", "Credits");
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            bool overwrite = ShowDialog("overwrite", "Overwrite location?");
+        }
+
+        public static bool ShowDialog(string text, string caption)
+        {
+            Form prompt = new Form();
+            prompt.Width = 180;
+            prompt.Height = 100;
+            prompt.Text = caption;
+            FlowLayoutPanel panel = new FlowLayoutPanel();
+            CheckBox chk = new CheckBox();
+            chk.Text = text;
+            Button ok = new Button() { Text = "Yes" };
+            ok.Click += (sender, e) => { prompt.Close(); };
+            Button no = new Button() { Text = "No" };
+            no.Click += (sender, e) => { prompt.Close(); };
+            panel.Controls.Add(chk);
+            panel.SetFlowBreak(chk, true);
+            panel.Controls.Add(ok);
+            panel.Controls.Add(no);
+            prompt.Controls.Add(panel);
+            prompt.ShowDialog();
+            return chk.Checked;
         }
     }
 }
