@@ -16,12 +16,30 @@ C:\Users\a\Visual Studio Projects\BeerPong\obj\Debug\net7.0-windows\refint\BeerP
 C:\Users\a\Visual Studio Projects\BeerPong\obj\Debug\net7.0-windows\BeerPong.pdb
 C:\Users\a\Visual Studio Projects\BeerPong\obj\Debug\net7.0-windows\BeerPong.genruntimeconfig.cache
 C:\Users\a\Visual Studio Projects\BeerPong\obj\Debug\net7.0-windows\ref\BeerPong.dll
-C:\Users\a\Visual Studio Projects\BeerPong\obj\Debug\net7.0-windows\BeerPong.Resource1.resources
-C:\Users\a\Visual Studio Projects\BeerPong\bin\Debug\net7.0-windows\NAudio.dll
-C:\Users\a\Visual Studio Projects\BeerPong\bin\Debug\net7.0-windows\NAudio.Asio.dll
-C:\Users\a\Visual Studio Projects\BeerPong\bin\Debug\net7.0-windows\NAudio.Core.dll
-C:\Users\a\Visual Studio Projects\BeerPong\bin\Debug\net7.0-windows\NAudio.Midi.dll
-C:\Users\a\Visual Studio Projects\BeerPong\bin\Debug\net7.0-windows\NAudio.Wasapi.dll
-C:\Users\a\Visual Studio Projects\BeerPong\bin\Debug\net7.0-windows\NAudio.WinForms.dll
-C:\Users\a\Visual Studio Projects\BeerPong\bin\Debug\net7.0-windows\NAudio.WinMM.dll
-C:\Users\a\Visual Studio Projects\BeerPong\obj\Debug\net7.0-windows\BeerPong.csproj.CopyComplete
+C:\Users\hecto\Source\Repos\Beer-Pong\bin\Debug\net7.0-windows\BeerPong.exe
+C:\Users\hecto\Source\Repos\Beer-Pong\bin\Debug\net7.0-windows\BeerPong.deps.json
+C:\Users\hecto\Source\Repos\Beer-Pong\bin\Debug\net7.0-windows\BeerPong.runtimeconfig.json
+C:\Users\hecto\Source\Repos\Beer-Pong\bin\Debug\net7.0-windows\BeerPong.dll
+C:\Users\hecto\Source\Repos\Beer-Pong\bin\Debug\net7.0-windows\BeerPong.pdb
+C:\Users\hecto\Source\Repos\Beer-Pong\obj\Debug\net7.0-windows\BeerPong.csproj.AssemblyReference.cache
+C:\Users\hecto\Source\Repos\Beer-Pong\obj\Debug\net7.0-windows\BeerPong.Form1.resources
+C:\Users\hecto\Source\Repos\Beer-Pong\obj\Debug\net7.0-windows\BeerPong.Properties.Resources.resources
+C:\Users\hecto\Source\Repos\Beer-Pong\obj\Debug\net7.0-windows\BeerPong.csproj.GenerateResource.cache
+C:\Users\hecto\Source\Repos\Beer-Pong\obj\Debug\net7.0-windows\BeerPong.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hecto\Source\Repos\Beer-Pong\obj\Debug\net7.0-windows\BeerPong.AssemblyInfoInputs.cache
+C:\Users\hecto\Source\Repos\Beer-Pong\obj\Debug\net7.0-windows\BeerPong.AssemblyInfo.cs
+C:\Users\hecto\Source\Repos\Beer-Pong\obj\Debug\net7.0-windows\BeerPong.csproj.CoreCompileInputs.cache
+C:\Users\hecto\Source\Repos\Beer-Pong\obj\Debug\net7.0-windows\BeerPong.dll
+C:\Users\hecto\Source\Repos\Beer-Pong\obj\Debug\net7.0-windows\refint\BeerPong.dll
+C:\Users\hecto\Source\Repos\Beer-Pong\obj\Debug\net7.0-windows\BeerPong.pdb
+C:\Users\hecto\Source\Repos\Beer-Pong\obj\Debug\net7.0-windows\BeerPong.genruntimeconfig.cache
+C:\Users\hecto\Source\Repos\Beer-Pong\obj\Debug\net7.0-windows\ref\BeerPong.dll
+C:\Users\hecto\source\repos\Beer-Pong\bin\Debug\net7.0-windows\NAudio.dll
+C:\Users\hecto\source\repos\Beer-Pong\bin\Debug\net7.0-windows\NAudio.Asio.dll
+C:\Users\hecto\source\repos\Beer-Pong\bin\Debug\net7.0-windows\NAudio.Core.dll
+C:\Users\hecto\source\repos\Beer-Pong\bin\Debug\net7.0-windows\NAudio.Midi.dll
+C:\Users\hecto\source\repos\Beer-Pong\bin\Debug\net7.0-windows\NAudio.Wasapi.dll
+C:\Users\hecto\source\repos\Beer-Pong\bin\Debug\net7.0-windows\NAudio.WinForms.dll
+C:\Users\hecto\source\repos\Beer-Pong\bin\Debug\net7.0-windows\NAudio.WinMM.dll
+C:\Users\hecto\source\repos\Beer-Pong\obj\Debug\net7.0-windows\BeerPong.Resource1.resources
+C:\Users\hecto\source\repos\Beer-Pong\obj\Debug\net7.0-windows\BeerPong.csproj.CopyComplete
