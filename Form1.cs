@@ -11,10 +11,12 @@ namespace BeerPong
         VSolver solver;
         List<Glass> glasses;
         Pen backTrajectory;
+        Projectile theBall;
         Point mouse, trigger;
         bool isMouseDown, isLeftButton;
         int ballID;
         int countdown = 120;
+        Vec2 startPos;
         
 
         private readonly KonamiSequence _konamiSequence = new KonamiSequence();
@@ -27,6 +29,9 @@ namespace BeerPong
 
         private void Init()
         {
+            startPos = new Vec2(100, 100);
+            theBall= new Projectile(startPos);
+
             canvas = new Canvas(PCT_CANVAS.Size);
             PCT_CANVAS.Image = canvas.bitmap;
             boxes = new List<VBox>();//new VBox(100, 150, 50, 50, 1);
@@ -55,6 +60,7 @@ namespace BeerPong
             balls.Add(boxes[boxes.Count - 1].c);
             balls.Add(boxes[boxes.Count - 1].d);
 
+
             /*
             glasses.Add(new Glass());
             balls.Add(glasses[glasses.Count - 1].a);
@@ -72,30 +78,6 @@ namespace BeerPong
             */
             //glass.DrawBody(ref canvas);
             //platform.DrawBody(ref canvas);
-            /*
-            pole.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
-            a.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
-            b.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
-            c.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
-            d.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);*/
-            PCT_CANVAS.Invalidate();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            canvas.FastClear();
-
-            ballID = solver.CheckCollisions(canvas.g, (int)canvas.Width, (int)canvas.Height, mouse, isMouseDown);
-            for (int counter = 0; counter < boxes.Count; counter++)
-            {
-                boxes[counter].React(ref canvas, balls, PCT_CANVAS.Width, PCT_CANVAS.Height);
-            }
-            //box.DrawBody(ref canvas);
-            //glass.DrawBody(ref canvas);
-            //platform.DrawBody(ref canvas);
-
-            if (isMouseDown && isLeftButton && ballID != -1)
-                canvas.g.DrawLine(backTrajectory, balls[ballID].X, balls[ballID].Y, trigger.X, trigger.Y);
             /*
             pole.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
             a.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
@@ -182,6 +164,65 @@ namespace BeerPong
             gameTimer.Enabled = false;
         }
 
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+                        canvas.FastClear();
+            
+            ballID = solver.CheckCollisions(canvas.g, (int)canvas.Width, (int)canvas.Height, mouse, isMouseDown);
+            theBall.lilbol.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
+            for (int counter = 0; counter < boxes.Count; counter++)
+            {
+                boxes[counter].React(ref canvas, balls, PCT_CANVAS.Width, PCT_CANVAS.Height);
+            }
+            //box.DrawBody(ref canvas);
+            //glass.DrawBody(ref canvas);
+            //platform.DrawBody(ref canvas);
+
+            if (isMouseDown && isLeftButton && ballID != -1)
+                canvas.g.DrawLine(backTrajectory, balls[ballID].X, balls[ballID].Y, trigger.X, trigger.Y);
+            /*
+            pole.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
+            a.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
+            b.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
+            c.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);
+            d.Render(canvas.g, PCT_CANVAS.Width, PCT_CANVAS.Height);*/
+            PCT_CANVAS.Invalidate();
+        }
+
+        private void PCT_CANVAS_MouseHover(object sender, EventArgs e)
+        {
+            this.Cursor = new Cursor(Cursor.Current.Handle);
+
+            int xCoordinate = Cursor.Position.X;
+            int yCoordinate = Cursor.Position.Y;
+
+            if (isInside((int)theBall.lilbol.Pos.X, (int)theBall.lilbol.Pos.Y, (int)theBall.lilbol.radius, xCoordinate, yCoordinate))
+            {
+                Cursor.Current = Cursors.Hand;
+            }
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isInside((int)theBall.lilbol.Pos.X, (int)theBall.lilbol.Pos.Y, (int)theBall.lilbol.radius, e.X - PCT_CANVAS.Location.X, e.Y - PCT_CANVAS.Location.Y))
+            {
+                Cursor.Current = Cursors.Hand;
+                theBall.selected = true;
+            }
+            else
+            {
+                theBall.selected = false;
+            }
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (theBall.selected)
+            {
+
+            }
+        }
+
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             if (countdown <= 0)
@@ -196,6 +237,19 @@ namespace BeerPong
                 countdown--;
                 timerCounter.Text = countdown.ToString();
             }
+        }
+
+        static bool isInside(int circle_x, int circle_y,
+                                  int rad, int x, int y)
+        {
+            // Compare radius of circle with
+            // distance of its center from
+            // given point
+            if ((x - circle_x) * (x - circle_x) +
+                (y - circle_y) * (y - circle_y) <= rad * rad)
+                return true;
+            else
+                return false;
         }
     }
 }

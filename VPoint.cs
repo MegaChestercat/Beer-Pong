@@ -11,7 +11,7 @@ namespace BeerPong
         public float Mass;
         int id;
         public float radius, diameter, m, friction = 0.97f;
-        Color c;
+        public Color c;
         SolidBrush brush;
         public string position;
 
@@ -69,12 +69,18 @@ namespace BeerPong
             set { pos.Y = value; }
         }
 
+        public VPoint(int x, int y, Color color)
+        {
+            c = color;
+            this.id = -1;
+            Init(x, y, 0, 0);
+        }
+
         public VPoint(int x, int y)
         {
             this.id = -1;
             Init(x, y, 0, 0);
         }
-
         public VPoint(int x, int y, int id)
         {
             this.id = id;
@@ -124,7 +130,7 @@ namespace BeerPong
 
             gravity = new Vec2(0, 1);
 
-            radius = 5;
+            radius =5;
             diameter = radius + radius;
             c = Color.Red;
             Mass = 1;
