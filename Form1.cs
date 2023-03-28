@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace BeerPong
 {
     public partial class Form1 : Form
@@ -15,6 +17,7 @@ namespace BeerPong
         bool isMouseDown, isLeftButton;
         int ballID;
         int countdown = 120;
+        public int res;
 
 
         private readonly KonamiSequence _konamiSequence = new KonamiSequence();
@@ -37,7 +40,24 @@ namespace BeerPong
             //rnd = new Random();
             canvas.FastClear();
 
-            level1();
+            res = ShowLevelDialog();
+
+            switch (res)
+            {
+                case 0:
+                    level1();
+                    break;
+                case 1:
+                    level1();
+                    break;
+                case 2:
+                    level2();
+                    break;
+                case 3:
+                    level3();
+                    break;
+
+            }
             PCT_CANVAS.Invalidate();
         }
 
@@ -123,6 +143,50 @@ namespace BeerPong
             balls.Add(boxes[boxes.Count - 1].d);
         }
 
+        private void level2()
+        {
+            for (int b = 0; b < 14; b++)
+                balls.Add(new VPoint(0 + (b * 15), 270, balls.Count, true));
+
+            for (int b = 0; b < 9; b++)
+                balls.Add(new VPoint(420 + (b * 15), 122, balls.Count, true));
+
+            for (int b = 0; b < 8; b++)
+                balls.Add(new VPoint(800 + (b * 15), (int)(canvas.Height * .5f - b * 6), balls.Count, true));
+
+            for (int b = 0; b < 5; b++)
+                balls.Add(new VPoint(550 + (b * 15), (int)(380 + b * 6), balls.Count, true));
+
+            for (int b = 0; b < 3; b++)
+                balls.Add(new VPoint(380, 260 + (b * 15), balls.Count, true));
+
+            boxes.Add(new VBox(200, 150, 50, 50, balls.Count));
+            balls.Add(boxes[boxes.Count - 1].a);
+            balls.Add(boxes[boxes.Count - 1].b);
+            balls.Add(boxes[boxes.Count - 1].c);
+            balls.Add(boxes[boxes.Count - 1].d);
+        }
+        private void level3()
+        {
+            for (int b = 0; b < 14; b++)
+                balls.Add(new VPoint(0 + (b * 15), 270, balls.Count, true));
+
+            for (int b = 0; b < 9; b++)
+                balls.Add(new VPoint(420 + (b * 15), 122, balls.Count, true));
+
+            for (int b = 0; b < 8; b++)
+                balls.Add(new VPoint(800 + (b * 15), (int)(canvas.Height * .5f - b * 6), balls.Count, true));
+
+            for (int b = 0; b < 5; b++)
+                balls.Add(new VPoint(550 + (b * 15), (int)(380 + b * 6), balls.Count, true));
+
+            for (int b = 0; b < 3; b++)
+                balls.Add(new VPoint(380, 260 + (b * 15), balls.Count, true));
+
+
+        }
+
+
         private void gameTimer_Tick(object sender, EventArgs e)
         {
             if (countdown <= 0)
@@ -161,55 +225,40 @@ namespace BeerPong
             MessageBox.Show("Mexican Beer Pong \n\nProgrammers: \n\nMario Arturo Sánchez Ruelas \n\n\nDesigners: \n\nMario Arturo Sánchez Ruelas", "Credits");
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        public static int ShowLevelDialog()
         {
-            int res = ShowDialogLevel();
-        }
 
-        public static int ShowDialogLevel()
-        {
             Form prompt = new Form();
             prompt.Width = 180;
             prompt.Height = 100;
-            prompt.Text = "Select the level you want to play";
             FlowLayoutPanel panel = new FlowLayoutPanel();
-            CheckBox chk1 = new CheckBox();
-            CheckBox chk2 = new CheckBox();
-            CheckBox chk3 = new CheckBox();
-            chk1.Text = "Level 1";
-            chk2.Text = "Level 2";
-            chk3.Text = "Level 3";
-            Button ok = new Button() { Text = "Continue" };
-            ok.Click += (sender, e) => { prompt.Close(); };
-            Button no = new Button() { Text = "Cancel" };
-            no.Click += (sender, e) => { prompt.Close(); };
-            panel.Controls.Add(chk1);
-            panel.SetFlowBreak(chk1, true);
-            panel.Controls.Add(chk2);
-            panel.SetFlowBreak(chk2, true);
-            panel.Controls.Add(chk3);
-            panel.SetFlowBreak(chk3, true);
+            ComboBox options = new ComboBox();
+            options.Items.Add("Level 1");
+            options.Items.Add("Level 2");
+            options.Items.Add("Level 3");
+            Button ok = new Button();
+            ok.Text = "Continue";
+            ok.MouseClick += (sender, e) => { prompt.Close(); };
+            panel.Controls.Add(options);
             panel.Controls.Add(ok);
-            panel.Controls.Add(no);
             prompt.Controls.Add(panel);
             prompt.ShowDialog();
-            if (chk1.Checked)
-            {
-                return 1;
-            }
-            else if (chk2.Checked)
-            {
-                return 2;
-            }
-            else if (chk3.Checked)
-            {
-                return 3;
-            }
-            else
-            {
-                return 0;
-            }
 
+            switch (options.SelectedIndex)
+            {
+                case 0:
+                    return 1;
+                    break;
+                case 1:
+                    return 2;
+                    break;
+                case 2:
+                    return 3;
+                    break;
+                default:
+                    return 0;
+                    break;
+            }
         }
     }
 }
