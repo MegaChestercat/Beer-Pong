@@ -361,10 +361,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/.vs/ProjectEvaluation/beerpong.projects.v5.2
-/.vs/ProjectEvaluation/beerpong.metadata.v5.2
-/.vs/BeerPong/v17/.suo
-/.vs/BeerPong/v17/.futdcache.v2
-/.vs/BeerPong/DesignTimeBuild/.dtbcache.v2
-/.vs/BeerPong/FileContentIndex/dee3f2e4-c5a5-4508-9c5b-60b70623c7c3.vsidx
-/.vs/BeerPong/FileContentIndex/0e45dc05-de24-4975-8e03-c7a5f7c5b6a1.vsidx
