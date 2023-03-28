@@ -163,29 +163,53 @@ namespace BeerPong
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            bool overwrite = ShowDialog("overwrite", "Overwrite location?");
+            int res = ShowDialogLevel();
         }
 
-        public static bool ShowDialog(string text, string caption)
+        public static int ShowDialogLevel()
         {
             Form prompt = new Form();
             prompt.Width = 180;
             prompt.Height = 100;
-            prompt.Text = caption;
+            prompt.Text = "Select the level you want to play";
             FlowLayoutPanel panel = new FlowLayoutPanel();
-            CheckBox chk = new CheckBox();
-            chk.Text = text;
-            Button ok = new Button() { Text = "Yes" };
+            CheckBox chk1 = new CheckBox();
+            CheckBox chk2 = new CheckBox();
+            CheckBox chk3 = new CheckBox();
+            chk1.Text = "Level 1";
+            chk2.Text = "Level 2";
+            chk3.Text = "Level 3";
+            Button ok = new Button() { Text = "Continue" };
             ok.Click += (sender, e) => { prompt.Close(); };
-            Button no = new Button() { Text = "No" };
+            Button no = new Button() { Text = "Cancel" };
             no.Click += (sender, e) => { prompt.Close(); };
-            panel.Controls.Add(chk);
-            panel.SetFlowBreak(chk, true);
+            panel.Controls.Add(chk1);
+            panel.SetFlowBreak(chk1, true);
+            panel.Controls.Add(chk2);
+            panel.SetFlowBreak(chk2, true);
+            panel.Controls.Add(chk3);
+            panel.SetFlowBreak(chk3, true);
             panel.Controls.Add(ok);
             panel.Controls.Add(no);
             prompt.Controls.Add(panel);
             prompt.ShowDialog();
-            return chk.Checked;
+            if (chk1.Checked)
+            {
+                return 1;
+            }
+            else if (chk2.Checked)
+            {
+                return 2;
+            }
+            else if (chk3.Checked)
+            {
+                return 3;
+            }
+            else
+            {
+                return 0;
+            }
+
         }
     }
 }
