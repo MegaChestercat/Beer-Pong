@@ -37,16 +37,18 @@
             pictureBox2 = new PictureBox();
             tonPoints = new Label();
             kosPoints = new Label();
-            label1 = new Label();
+            gameTitle = new Label();
             gameTimer = new System.Windows.Forms.Timer(components);
-            startBTN = new Button();
-            pauseBTN = new Button();
             label2 = new Label();
             timerCounter = new Label();
             label3 = new Label();
+            start = new PictureBox();
+            pause = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)PCT_CANVAS).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)start).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pause).BeginInit();
             SuspendLayout();
             // 
             // timer1
@@ -129,40 +131,21 @@
             kosPoints.TabIndex = 6;
             kosPoints.Text = "0";
             // 
-            // label1
+            // gameTitle
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(353, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(212, 30);
-            label1.TabIndex = 7;
-            label1.Text = "Mexican Beer Pong";
+            gameTitle.AutoSize = true;
+            gameTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            gameTitle.Location = new Point(353, 9);
+            gameTitle.Name = "gameTitle";
+            gameTitle.Size = new Size(212, 30);
+            gameTitle.TabIndex = 7;
+            gameTitle.Text = "Mexican Beer Pong";
+            gameTitle.MouseDoubleClick += gameTitle_MouseDoubleClick;
             // 
             // gameTimer
             // 
             gameTimer.Interval = 1000;
             gameTimer.Tick += gameTimer_Tick;
-            // 
-            // startBTN
-            // 
-            startBTN.Location = new Point(373, 65);
-            startBTN.Name = "startBTN";
-            startBTN.Size = new Size(75, 23);
-            startBTN.TabIndex = 8;
-            startBTN.Text = "Play Game";
-            startBTN.UseVisualStyleBackColor = true;
-            startBTN.Click += startBTN_Click;
-            // 
-            // pauseBTN
-            // 
-            pauseBTN.Location = new Point(454, 65);
-            pauseBTN.Name = "pauseBTN";
-            pauseBTN.Size = new Size(95, 23);
-            pauseBTN.TabIndex = 9;
-            pauseBTN.Text = "Pause Game";
-            pauseBTN.UseVisualStyleBackColor = true;
-            pauseBTN.Click += pauseBTN_Click;
             // 
             // label2
             // 
@@ -194,18 +177,40 @@
             label3.TabIndex = 12;
             label3.Text = "seconds";
             // 
+            // start
+            // 
+            start.Image = Resource1.start_button;
+            start.Location = new Point(340, 54);
+            start.Name = "start";
+            start.Size = new Size(119, 36);
+            start.SizeMode = PictureBoxSizeMode.StretchImage;
+            start.TabIndex = 13;
+            start.TabStop = false;
+            start.MouseClick += start_MouseClick;
+            // 
+            // pause
+            // 
+            pause.Image = Resource1.pause_button;
+            pause.Location = new Point(465, 54);
+            pause.Name = "pause";
+            pause.Size = new Size(119, 36);
+            pause.SizeMode = PictureBoxSizeMode.StretchImage;
+            pause.TabIndex = 14;
+            pause.TabStop = false;
+            pause.MouseClick += pause_MouseClick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(950, 639);
+            Controls.Add(pause);
+            Controls.Add(start);
             Controls.Add(label3);
             Controls.Add(timerCounter);
             Controls.Add(label2);
-            Controls.Add(pauseBTN);
-            Controls.Add(startBTN);
-            Controls.Add(label1);
+            Controls.Add(gameTitle);
             Controls.Add(kosPoints);
             Controls.Add(tonPoints);
             Controls.Add(pictureBox2);
@@ -219,6 +224,8 @@
             ((System.ComponentModel.ISupportInitialize)PCT_CANVAS).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)start).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pause).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -233,12 +240,12 @@
         private PictureBox pictureBox2;
         private Label tonPoints;
         private Label kosPoints;
-        private Label label1;
+        private Label gameTitle;
         private System.Windows.Forms.Timer gameTimer;
-        private Button startBTN;
-        private Button pauseBTN;
         private Label label2;
         private Label timerCounter;
         private Label label3;
+        private PictureBox start;
+        private PictureBox pause;
     }
 }
