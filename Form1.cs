@@ -39,7 +39,8 @@ namespace BeerPong
             backTrajectory = new Pen(Color.FromArgb(155, 250, 176), 10);
             //rnd = new Random();
             canvas.FastClear();
-
+            level1();
+            /*
             res = ShowLevelDialog();
 
             switch (res)
@@ -57,7 +58,7 @@ namespace BeerPong
                     level3();
                     break;
 
-            }
+            }*/
             PCT_CANVAS.Invalidate();
         }
 
@@ -69,6 +70,11 @@ namespace BeerPong
             for (int counter = 0; counter < boxes.Count; counter++)
             {
                 boxes[counter].React(ref canvas, balls, PCT_CANVAS.Width, PCT_CANVAS.Height);
+            }
+
+            for (int counter = 0; counter < boxes.Count; counter++)
+            {
+                glasses[counter].React(ref canvas, balls, PCT_CANVAS.Width, PCT_CANVAS.Height);
             }
 
 
@@ -141,6 +147,20 @@ namespace BeerPong
             balls.Add(boxes[boxes.Count - 1].b);
             balls.Add(boxes[boxes.Count - 1].c);
             balls.Add(boxes[boxes.Count - 1].d);
+
+            glasses.Add(new Glass(330, 120, balls.Count));
+            balls.Add(glasses[glasses.Count-1].a);
+            balls.Add(glasses[glasses.Count-1].b);
+            balls.Add(glasses[glasses.Count-1].c);
+            balls.Add(glasses[glasses.Count-1].d);
+            balls.Add(glasses[glasses.Count-1].e);
+            balls.Add(glasses[glasses.Count-1].f);
+            balls.Add(glasses[glasses.Count-1].g);
+            balls.Add(glasses[glasses.Count-1].h);
+            balls.Add(glasses[glasses.Count-1].i);
+            balls.Add(glasses[glasses.Count-1].j);
+            balls.Add(glasses[glasses.Count-1].k);
+            balls.Add(glasses[glasses.Count-1].l);
         }
 
         private void level2()

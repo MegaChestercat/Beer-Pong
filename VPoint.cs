@@ -125,12 +125,12 @@ namespace BeerPong
             pos = new Vec2(x, y);
             old = new Vec2(x, y);
 
-            friction = 0.97f;
+            friction = 0.99f;
             groundFriction = 0.7f;
 
             gravity = new Vec2(0, 1);
 
-            radius =5;
+            radius =10;
             diameter = radius + radius;
             c = Color.Red;
             Mass = 1;
@@ -171,6 +171,7 @@ namespace BeerPong
 
         public void Constraints(int width, int height)
         {
+            
             if (pos.X > width - radius) pos.X = width - radius;
             if (pos.X < radius) pos.X = radius;
             if (pos.Y > height - radius) pos.Y = height - radius;

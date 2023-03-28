@@ -32,10 +32,10 @@ namespace BeerPong
             this.height = height;
             pos = new Vec2(x, y);
             
-            a = new VPoint(x - (width / 2), y - (height / 2), ran.Next(5), ran.Next(-2, 2), id, true);
-            b = new VPoint(x + (width / 2), y - (height / 2), id + 1, true);
-            c = new VPoint(x + (width / 2), y + (height / 2), id + 2, true);
-            d = new VPoint(x - (width / 2), y + (height / 2), id + 3, true);
+            a = new VPoint(x - (width / 2), y - (height / 2), ran.Next(5), ran.Next(-2, 2), id, false);
+            b = new VPoint(x + (width / 2), y - (height / 2), id + 1);
+            c = new VPoint(x + (width / 2), y + (height / 2), id + 2);
+            d = new VPoint(x - (width / 2), y + (height / 2), id + 3);
             p1 = new VPole(a, b);
             p2 = new VPole(c, d);
             p3 = new VPole(a, c);
@@ -137,12 +137,13 @@ namespace BeerPong
 
             index = -1;
 
+            
             a = new VPole(new VPoint((int)pts[0].X, (int)pts[0].Y), new VPoint((int)pts[1].X, (int)pts[1].Y));
             b = new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[2].X, (int)pts[2].Y));
             c = new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[3].X, (int)pts[3].Y));
             d = new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[0].X, (int)pts[0].Y));
 
-            FindIntersections(a, p.Pos);
+            FindIntersections(a, p.Pos);              
             FindIntersections(b, p.Pos);
             FindIntersections(c, p.Pos);
             FindIntersections(d, p.Pos);
@@ -159,8 +160,8 @@ namespace BeerPong
 
             if (distace < p.Radius + 3)
             {
-                g.DrawLine(Pens.AliceBlue, xp2[index].X, xp2[index].Y, p.Pos.X, p.Pos.Y);
-                g.DrawPolygon(alarm, pts);
+                //g.DrawLine(Pens.AliceBlue, xp2[index].X, xp2[index].Y, p.Pos.X, p.Pos.Y);
+                //g.DrawPolygon(alarm, pts);
 
                 if (!p.IsPinned)//----------------FALTA CREAR LA REACCIÓN DE LA CAJA MOVIENDO LOS DOS PUNTOS DE MASA CORRESPONDIENTES AL RESORTE
                 {
@@ -182,7 +183,7 @@ namespace BeerPong
         public override void DrawBody(ref Canvas canvas)
         {
             p.Width = a.Diameter;
-            canvas.g.FillPolygon(brush, pts);
+            //canvas.g.FillPolygon(brush, pts);
             canvas.g.DrawPolygon(p, pts);
             p.Width = 10;
             canvas.g.DrawLine(p, pts[3].X, pts[3].Y, pts[1].X, pts[1].Y);
