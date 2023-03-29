@@ -13,7 +13,6 @@ namespace BeerPong
         public float radius, diameter, m, friction = 0.97f;
         public Color c;
         SolidBrush brush;
-        public string position;
 
         public Vec2 Pos
         {
@@ -104,7 +103,7 @@ namespace BeerPong
 
             gravity = new Vec2(0, 0);
 
-            radius = 5;
+            radius = 8;
             diameter = radius + radius;
             c = Color.Red;
             Mass = 1;
@@ -130,7 +129,7 @@ namespace BeerPong
 
             gravity = new Vec2(0, 1);
 
-            radius =10;
+            radius =8;
             diameter = radius + radius;
             c = Color.Red;
             Mass = 1;
@@ -157,13 +156,13 @@ namespace BeerPong
 
             vel = (pos - old) * friction;
 
-            /*
+            //The next condition helps to have friction on the floor
             if (pos.Y >= height - radius && vel.MagSqr() > 0.000001)
             {
                 m = vel.Length();
                 vel /= m;
                 vel *= (m * groundFriction);
-            }*/
+            }
 
             old = pos;
             pos += vel + gravity;

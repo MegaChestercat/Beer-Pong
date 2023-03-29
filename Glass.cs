@@ -13,7 +13,7 @@ namespace BeerPong
         List<VPole> poles;
         Random ran = new Random();
         List<Vec2> xp2 = new List<Vec2>();
-        PointF[] pts;
+        PointF[] pts, orderedPts;
         List<PointF> dPts;
 
         Pen p;
@@ -21,7 +21,7 @@ namespace BeerPong
         Color color, c1;
         SolidBrush brush;
         //VPole p1, p2, p3, p4, p5, p6, p7, p8, p9, p10;
-        public Glass(int x, int y, int id)
+        public Glass(int x, int y, int id, bool pin)
         {
             poles = new List<VPole>();
             this.id = id;
@@ -29,20 +29,20 @@ namespace BeerPong
             pos = new Vec2(x, y);
 
             //Left side of the glass
-            a = new VPoint(x, y, id, false);
-            b = new VPoint((int)a.Pos.X, (int)a.Pos.Y + 15, id+1, false);
-            c = new VPoint((int)b.Pos.X, (int)b.Pos.Y + 15, id+2, false);
-            d = new VPoint((int)c.Pos.X, (int)c.Pos.Y + 15, id+3, false);
-            e = new VPoint((int)d.Pos.X, (int)d.Pos.Y + 15, id+4, false);
+            a = new VPoint(x, y, id, pin);
+            b = new VPoint((int)a.Pos.X, (int)a.Pos.Y + 15, id+1, pin);
+            c = new VPoint((int)b.Pos.X, (int)b.Pos.Y + 15, id+2, pin);
+            d = new VPoint((int)c.Pos.X, (int)c.Pos.Y + 15, id+3, pin);
+            e = new VPoint((int)d.Pos.X, (int)d.Pos.Y + 15, id+4, pin);
             //right side of the glass
-            f = new VPoint((int)a.Pos.X + 45, (int)a.Pos.Y, id+5, false);
-            g = new VPoint((int)f.Pos.X, (int)f.Pos.Y + 15, id+6, false);
-            h = new VPoint((int)g.Pos.X, (int)g.Pos.Y + 15, id+7, false);
-            i = new VPoint((int)h.Pos.X, (int)h.Pos.Y + 15, id+8, false);
-            j = new VPoint((int)i.Pos.X, (int)i.Pos.Y + 15, id+9, false);
+            f = new VPoint((int)a.Pos.X + 45, (int)a.Pos.Y, id+5, pin);
+            g = new VPoint((int)f.Pos.X, (int)f.Pos.Y + 15, id+6, pin);
+            h = new VPoint((int)g.Pos.X, (int)g.Pos.Y + 15, id+7, pin);
+            i = new VPoint((int)h.Pos.X, (int)h.Pos.Y + 15, id+8, pin);
+            j = new VPoint((int)i.Pos.X, (int)i.Pos.Y + 15, id+9, pin);
             //base of the glass
-            k = new VPoint((int)e.Pos.X + 15, (int)e.Pos.Y, id+10, false);
-            l = new VPoint((int)k.Pos.X + 15, (int)k.Pos.Y, id+11, false);
+            k = new VPoint((int)e.Pos.X + 15, (int)e.Pos.Y, id+10, pin);
+            l = new VPoint((int)k.Pos.X + 15, (int)k.Pos.Y, id+11, pin);
 
             a.FromBody = true;
             b.FromBody = true;
@@ -77,6 +77,7 @@ namespace BeerPong
             this.l = l;
 
             pts = new PointF[12];
+            orderedPts = new PointF[12];
 
             poles.Add(new VPole(a, f));
             poles.Add(new VPole(a, b));
@@ -102,7 +103,53 @@ namespace BeerPong
             poles.Add(new VPole(a, k));
             poles.Add(new VPole(a, l));
             poles.Add(new VPole(f, k));
-            poles.Add(new VPole(f, k));
+            poles.Add(new VPole(f, l));
+
+            poles.Add(new VPole(b, f));
+            poles.Add(new VPole(b, g));
+            poles.Add(new VPole(b, h));
+            poles.Add(new VPole(b, i));
+            poles.Add(new VPole(b, j));
+            poles.Add(new VPole(b, k));
+            poles.Add(new VPole(b, l));
+
+            poles.Add(new VPole(c, f));
+            poles.Add(new VPole(c, g));
+            poles.Add(new VPole(c, h));
+            poles.Add(new VPole(c, i));
+            poles.Add(new VPole(c, j));
+            poles.Add(new VPole(c, k));
+            poles.Add(new VPole(c, l));
+
+            poles.Add(new VPole(d, f));
+            poles.Add(new VPole(d, g));
+            poles.Add(new VPole(d, h));
+            poles.Add(new VPole(d, i));
+            poles.Add(new VPole(d, j));
+            poles.Add(new VPole(d, k));
+            poles.Add(new VPole(d, l));
+
+            poles.Add(new VPole(e, f));
+            poles.Add(new VPole(e, g));
+            poles.Add(new VPole(e, h));
+            poles.Add(new VPole(e, i));
+            poles.Add(new VPole(e, j));
+            poles.Add(new VPole(e, k));
+            poles.Add(new VPole(e, l));
+
+            poles.Add(new VPole(a, b));
+            poles.Add(new VPole(b, c));
+            poles.Add(new VPole(c, d));
+            poles.Add(new VPole(d, e));
+            poles.Add(new VPole(f, g));
+            poles.Add(new VPole(g, h));
+            poles.Add(new VPole(h, i));
+            poles.Add(new VPole(i, j));
+            poles.Add(new VPole(a, f));
+            poles.Add(new VPole(e, k));
+            poles.Add(new VPole(k, l));
+            poles.Add(new VPole(l, j));
+
 
             c1 = Color.FromArgb(ran.Next(128, 256), ran.Next(128, 256), ran.Next(128, 256));
             brush = new SolidBrush(c1);
@@ -152,6 +199,19 @@ namespace BeerPong
             pts[10] = new PointF(k.Pos.X, k.Pos.Y);
             pts[11] = new PointF(l.Pos.X, l.Pos.Y);
 
+            orderedPts[0] = pts[0];
+            orderedPts[1] = pts[1];
+            orderedPts[2] = pts[0];
+            orderedPts[3] = pts[1];
+            orderedPts[4] = pts[4];
+            orderedPts[5] = pts[10];
+            orderedPts[6] = pts[11];
+            orderedPts[7] = pts[9];
+            orderedPts[8] = pts[8];
+            orderedPts[9] = pts[7];
+            orderedPts[10] = pts[6];
+            orderedPts[11] = pts[5];
+
             BoundingBox();
         }
         public void Render(ref Canvas canvas, int width, int height)
@@ -160,6 +220,7 @@ namespace BeerPong
             //g.DrawRectangle(Pens.Yellow, mX, mY, Mx - mX, My - mY);
 
             dPts.Clear();
+            
             dPts.Add(new PointF(pts[0].X - a.Radius, pts[0].Y - a.Radius));
             dPts.Add(new PointF(pts[1].X + a.Radius, pts[1].Y - a.Radius));
             dPts.Add(new PointF(pts[2].X + a.Radius, pts[2].Y + a.Radius));
@@ -198,13 +259,12 @@ namespace BeerPong
 
         public void EdgeCollision(Graphics g, VPoint p)//---------------------------------
         {
-            int index;
+            //int index;
             float distace, tmp;
             xp2.Clear();
 
             distace = float.MaxValue;
             List<VPole> colPoles = new List<VPole>();
-            VPole a, b, c, d, e, f, g1, h, i, j, k, l;
 
             pos.X = pts[0].X + pts[1].X + pts[2].X + pts[3].X + pts[4].X + pts[5].X + pts[6].X + pts[7].X + pts[8].X + pts[9].X + pts[10].X + pts[11].X;
             pos.Y = pts[0].Y + pts[1].Y + pts[2].Y + pts[3].Y + pts[4].Y + pts[5].Y + pts[6].Y + pts[7].Y + pts[8].Y + pts[9].Y + pts[10].Y + pts[11].Y;
@@ -212,8 +272,9 @@ namespace BeerPong
             pos.X /= 12;
             pos.Y /= 12;
 
-            index = -1;
+            //index = -1;
 
+            
             colPoles.Add(new VPole(new VPoint((int)pts[0].X, (int)pts[0].Y), new VPoint((int)pts[5].X, (int)pts[5].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[0].X, (int)pts[0].Y), new VPoint((int)pts[1].X, (int)pts[1].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[2].X, (int)pts[2].Y)));
@@ -238,8 +299,56 @@ namespace BeerPong
             colPoles.Add(new VPole(new VPoint((int)pts[0].X, (int)pts[0].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[0].X, (int)pts[0].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[5].X, (int)pts[5].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[5].X, (int)pts[5].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
 
-            for(int count = 0; count < colPoles.Count; count++)
+            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[5].X, (int)pts[5].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[6].X, (int)pts[6].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[7].X, (int)pts[7].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[8].X, (int)pts[8].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[9].X, (int)pts[9].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
+
+            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[5].X, (int)pts[5].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[6].X, (int)pts[6].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[7].X, (int)pts[7].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[8].X, (int)pts[8].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[9].X, (int)pts[9].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
+
+            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[5].X, (int)pts[5].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[6].X, (int)pts[6].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[7].X, (int)pts[7].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[8].X, (int)pts[8].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[9].X, (int)pts[9].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
+
+            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[5].X, (int)pts[5].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[6].X, (int)pts[6].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[7].X, (int)pts[7].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[8].X, (int)pts[8].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[9].X, (int)pts[9].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
+
+
+            colPoles.Add(new VPole(new VPoint((int)pts[0].X, (int)pts[0].Y), new VPoint((int)pts[1].X, (int)pts[1].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[2].X, (int)pts[2].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[3].X, (int)pts[3].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[4].X, (int)pts[4].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[5].X, (int)pts[5].Y), new VPoint((int)pts[6].X, (int)pts[6].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[6].X, (int)pts[6].Y), new VPoint((int)pts[7].X, (int)pts[7].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[7].X, (int)pts[7].Y), new VPoint((int)pts[8].X, (int)pts[8].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[8].X, (int)pts[8].Y), new VPoint((int)pts[9].X, (int)pts[9].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[0].X, (int)pts[0].Y), new VPoint((int)pts[5].X, (int)pts[5].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[10].X, (int)pts[10].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
+            colPoles.Add(new VPole(new VPoint((int)pts[11].X, (int)pts[11].Y), new VPoint((int)pts[9].X, (int)pts[9].Y)));
+
+
+            for (int count = 0; count < colPoles.Count; count++)
             {
                 FindIntersections(colPoles[count], p.Pos);
             }
@@ -250,7 +359,7 @@ namespace BeerPong
                 if (tmp < distace)
                 {
                     distace = tmp;
-                    index = point;
+                    //index = point;
                 }
             }
 
@@ -279,32 +388,9 @@ namespace BeerPong
         public override void DrawBody(ref Canvas canvas)
         {
             //p.Width = a.Diameter;
-            canvas.g.DrawPolygon(p, pts);
-            canvas.g.FillPolygon(brush, pts);
-            //canvas.g.DrawImage(Resource1.Kosako, pts[0].X, pts[0].Y, 45, 60);
-
-
-            //p = new Pen(Color.FromArgb(color.R - 65, color.G - 55, color.B - 55), 8);//4
-            //canvas.g.DrawLines(p, pts);//*/
-            /*
-            a.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
-            b.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
-            c.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
-            d.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
-            e.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
-            f.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
-            g.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
-            h.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
-            i.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
-            j.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
-            k.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
-            l.Render(canvas.g, (int)canvas.Width, (int)canvas.Height);*/
-
-            /*
-            for (int i = 0; i < poles.Count(); i++)
-            {
-                poles[i].Render(canvas.g, (int)canvas.Width, (int)canvas.Height);
-            }*/
+            canvas.g.DrawPolygon(p, orderedPts);
+            //canvas.g.FillPolygon(brush, orderedPts);
+            //canvas.g.DrawImage(Resource1.red_glass, pts[0].X, pts[0].Y, 45, 60);
         }
     }
 }

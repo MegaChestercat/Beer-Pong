@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace BeerPong
@@ -5,8 +6,6 @@ namespace BeerPong
     public partial class Form1 : Form
     {
         Canvas canvas;
-        //VPoint a, b, c, d;
-        //VPole pole, pole2;
         List<VPoint> balls;
         //Random rnd;
         List<VBox> boxes;
@@ -18,6 +17,8 @@ namespace BeerPong
         int ballID;
         int countdown = 120;
         public int res;
+        public int points1, points2 = 0;
+
 
 
         private readonly KonamiSequence _konamiSequence = new KonamiSequence();
@@ -32,11 +33,13 @@ namespace BeerPong
         {
             canvas = new Canvas(PCT_CANVAS.Size);
             PCT_CANVAS.Image = canvas.bitmap;
-            boxes = new List<VBox>();//new VBox(100, 150, 50, 50, 1);
-            glasses = new List<Glass>();//new Glass();
+            boxes = new List<VBox>();
+            glasses = new List<Glass>();
             balls = new List<VPoint>();
             solver = new VSolver(balls);
             backTrajectory = new Pen(Color.FromArgb(155, 250, 176), 10);
+            backTrajectory.DashCap = System.Drawing.Drawing2D.DashCap.Round;
+            backTrajectory.DashPattern = new float[] { 2.0F, 2.0F, 1.0F, 3.0F };
             //rnd = new Random();
             canvas.FastClear();
             level1();
@@ -77,11 +80,26 @@ namespace BeerPong
                 glasses[counter].React(ref canvas, balls, PCT_CANVAS.Width, PCT_CANVAS.Height);
             }
 
+            for(int i = 0; i < balls.Count; i++)
+            {
+                if (balls[i].Id > 54)
+                {
+                    if (balls[i].Y >= glasses[0].a.Y-20 && (balls[i].X >= glasses[0].a.X && balls[i].X <= glasses[0].f.X))
+                    {
+                        points1 += 2;
+                        kosPoints.Text = points1.ToString();
+                        balls.Remove(balls[i]);
+
+                    }
+                }
+            }
+            
 
             if (isMouseDown && isLeftButton && ballID != -1)
                 canvas.g.DrawLine(backTrajectory, balls[ballID].X, balls[ballID].Y, trigger.X, trigger.Y);
 
             PCT_CANVAS.Invalidate();
+
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -142,25 +160,43 @@ namespace BeerPong
             for (int b = 0; b < 3; b++)
                 balls.Add(new VPoint(380, 260 + (b * 15), balls.Count, true));
 
-            boxes.Add(new VBox(200, 150, 50, 50, balls.Count));
+            boxes.Add(new VBox(480, 450, 50, 50, balls.Count));
             balls.Add(boxes[boxes.Count - 1].a);
             balls.Add(boxes[boxes.Count - 1].b);
             balls.Add(boxes[boxes.Count - 1].c);
             balls.Add(boxes[boxes.Count - 1].d);
 
-            glasses.Add(new Glass(330, 120, balls.Count));
-            balls.Add(glasses[glasses.Count-1].a);
-            balls.Add(glasses[glasses.Count-1].b);
-            balls.Add(glasses[glasses.Count-1].c);
-            balls.Add(glasses[glasses.Count-1].d);
-            balls.Add(glasses[glasses.Count-1].e);
-            balls.Add(glasses[glasses.Count-1].f);
-            balls.Add(glasses[glasses.Count-1].g);
-            balls.Add(glasses[glasses.Count-1].h);
-            balls.Add(glasses[glasses.Count-1].i);
-            balls.Add(glasses[glasses.Count-1].j);
-            balls.Add(glasses[glasses.Count-1].k);
-            balls.Add(glasses[glasses.Count-1].l);
+          
+
+            glasses.Add(new Glass(120, 450, balls.Count, false));
+
+            balls.Add(glasses[glasses.Count - 1].a);
+            balls.Add(glasses[glasses.Count - 1].b);
+            balls.Add(glasses[glasses.Count - 1].c);
+            balls.Add(glasses[glasses.Count - 1].d);
+            balls.Add(glasses[glasses.Count - 1].e);
+            balls.Add(glasses[glasses.Count - 1].f);
+            balls.Add(glasses[glasses.Count - 1].g);
+            balls.Add(glasses[glasses.Count - 1].h);
+            balls.Add(glasses[glasses.Count - 1].i);
+            balls.Add(glasses[glasses.Count - 1].j);
+            balls.Add(glasses[glasses.Count - 1].k);
+            balls.Add(glasses[glasses.Count - 1].l);
+
+            /*
+            glasses.Add(new Glass(100, 120, balls.Count, true));
+            balls.Add(glasses[glasses.Count - 1].a);
+            balls.Add(glasses[glasses.Count - 1].b);
+            balls.Add(glasses[glasses.Count - 1].c);
+            balls.Add(glasses[glasses.Count - 1].d);
+            balls.Add(glasses[glasses.Count - 1].e);
+            balls.Add(glasses[glasses.Count - 1].f);
+            balls.Add(glasses[glasses.Count - 1].g);
+            balls.Add(glasses[glasses.Count - 1].h);
+            balls.Add(glasses[glasses.Count - 1].i);
+            balls.Add(glasses[glasses.Count - 1].j);
+            balls.Add(glasses[glasses.Count - 1].k);
+            balls.Add(glasses[glasses.Count - 1].l);*/
         }
 
         private void level2()
@@ -264,6 +300,7 @@ namespace BeerPong
             prompt.Controls.Add(panel);
             prompt.ShowDialog();
 
+
             switch (options.SelectedIndex)
             {
                 case 0:
@@ -279,6 +316,16 @@ namespace BeerPong
                     return 0;
                     break;
             }
+        }
+
+        private void lever1_MouseClick(object sender, MouseEventArgs e)
+        {
+            balls.Add(new VPoint(e.X, e.Y, balls.Count));
+        }
+
+        private void lever1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //balls.RemoveAt(balls.Count - 2);
         }
     }
 }

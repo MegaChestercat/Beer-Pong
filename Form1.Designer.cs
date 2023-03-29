@@ -44,11 +44,13 @@
             label3 = new Label();
             start = new PictureBox();
             pause = new PictureBox();
+            lever1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)PCT_CANVAS).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)start).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pause).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)lever1).BeginInit();
             SuspendLayout();
             // 
             // timer1
@@ -199,12 +201,26 @@
             pause.TabStop = false;
             pause.MouseClick += pause_MouseClick;
             // 
+            // lever1
+            // 
+            lever1.BackColor = Color.DarkGray;
+            lever1.Image = Resource1.lever;
+            lever1.Location = new Point(14, 258);
+            lever1.Name = "lever1";
+            lever1.Size = new Size(60, 80);
+            lever1.SizeMode = PictureBoxSizeMode.Zoom;
+            lever1.TabIndex = 15;
+            lever1.TabStop = false;
+            lever1.MouseClick += lever1_MouseClick;
+            lever1.MouseDoubleClick += lever1_MouseDoubleClick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(950, 639);
+            Controls.Add(lever1);
             Controls.Add(pause);
             Controls.Add(start);
             Controls.Add(label3);
@@ -229,6 +245,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)start).EndInit();
             ((System.ComponentModel.ISupportInitialize)pause).EndInit();
+            ((System.ComponentModel.ISupportInitialize)lever1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -250,5 +267,6 @@
         private Label label3;
         private PictureBox start;
         private PictureBox pause;
+        private PictureBox lever1;
     }
 }

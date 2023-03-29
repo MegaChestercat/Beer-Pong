@@ -10,7 +10,6 @@ namespace BeerPong
         Vec2 axis, n, res;
         float dist, dif;
         List<VPoint> pts;
-
         public VSolver(List<VPoint> pts)
         {
             this.pts = pts;

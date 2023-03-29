@@ -11,14 +11,14 @@ namespace BeerPong
             float len_v = (float)Math.Sqrt(v.X * v.X + v.Y * v.Y);
             if (len_v == 0)
             {
-                return null; // la línea no está definida correctamente
+                return null; 
             }
             Vec2 n = new Vec2(v.X / len_v, v.Y / len_v);
             float dist = w.X * n.X + w.Y * n.Y;
 
             if (dist < 0 || dist > len_v)
             {
-                return null; // el punto de intersección está fuera de la línea
+                return null; 
             }
 
             return new Vec2(p1.X + n.X * dist, p1.Y + n.Y * dist);
@@ -32,14 +32,14 @@ namespace BeerPong
             float len_v = (float)Math.Sqrt(v.X * v.X + v.Y * v.Y);
             if (len_v == 0)
             {
-                return false; // la línea no está definida correctamente
+                return false; 
             }
             Vec2 n = new Vec2(v.X / len_v, v.Y / len_v);
             float dist = w.X * n.X + w.Y * n.Y;
 
             if (dist < 0 || dist > len_v)
             {
-                return false; // el punto de intersección está fuera de la línea
+                return false; 
             }
 
             return true;
