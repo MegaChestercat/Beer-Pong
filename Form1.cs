@@ -134,7 +134,7 @@ namespace BeerPong
                     }
                     break;
             }
-            
+
             if (isMouseDown && isLeftButton && ballID != -1)
                 canvas.g.DrawLine(backTrajectory, balls[ballID].X, balls[ballID].Y, trigger.X, trigger.Y);
 
@@ -199,7 +199,7 @@ namespace BeerPong
 
             for (int b = 0; b < 3; b++)
                 balls.Add(new VPoint(380, 260 + (b * 15), balls.Count, true));
-            
+
             boxes.Add(new VBox(480, 450, 50, 50, balls.Count));
             balls.Add(boxes[boxes.Count - 1].a);
             balls.Add(boxes[boxes.Count - 1].b);
@@ -223,7 +223,7 @@ namespace BeerPong
             balls.Add(glasses[0].k);
             balls.Add(glasses[0].l);
 
-            
+
             glasses.Add(new Glass(460, 45, balls.Count, true));
             balls.Add(glasses[1].a);
             balls.Add(glasses[1].b);
@@ -265,7 +265,7 @@ namespace BeerPong
         private void level3()
         {
             glasses.Add(new Glass(100, 120, balls.Count, true));
-            balls.Add(glasses[glasses.Count-1].a);
+            balls.Add(glasses[glasses.Count - 1].a);
             balls.Add(glasses[glasses.Count - 1].b);
             balls.Add(glasses[glasses.Count - 1].c);
             balls.Add(glasses[glasses.Count - 1].d);
@@ -383,7 +383,7 @@ namespace BeerPong
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

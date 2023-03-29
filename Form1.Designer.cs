@@ -238,6 +238,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form1";
+            StartPosition = FormStartPosition.Manual;
             Text = "Form1";
             Load += Form1_Load;
             KeyDown += Form1_KeyDown;
