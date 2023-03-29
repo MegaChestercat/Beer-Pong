@@ -20,10 +20,10 @@ namespace BeerPong
         Pen alarm = new Pen(Color.Red, 10);
         Color color, c1;
         SolidBrush brush;
-        //VPole p1, p2, p3, p4, p5, p6, p7, p8, p9, p10;
+        
+
         public Glass(int x, int y, int id)
         {
-            poles = new List<VPole>();
             this.id = id;
 
             pos = new Vec2(x, y);
@@ -76,6 +76,7 @@ namespace BeerPong
             this.k = k;
             this.l = l;
 
+            poles = new List<VPole>();
             pts = new PointF[12];
             orderedPts = new PointF[12];
 
@@ -180,7 +181,7 @@ namespace BeerPong
             a.Update(width, height); b.Update(width, height); c.Update(width, height); d.Update(width, height); e.Update(width, height); f.Update(width, height); g.Update(width, height); h.Update(width, height); i.Update(width, height); j.Update(width, height); k.Update(width, height); l.Update(width, height);
             a.Constraints(width, height); b.Constraints(width, height); c.Constraints(width, height); d.Constraints(width, height); e.Constraints(width, height); f.Constraints(width, height); g.Constraints(width, height); h.Constraints(width, height); i.Constraints(width, height); j.Constraints(width, height); k.Constraints(width, height); l.Constraints(width, height);
 
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < poles.Count; i++)
             {
                 poles[i].Update();
             }

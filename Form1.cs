@@ -25,6 +25,7 @@ namespace BeerPong
         public Form1()
         {
             InitializeComponent();
+            Init();
         }
 
         private void Init()
@@ -72,7 +73,7 @@ namespace BeerPong
                 boxes[counter].React(ref canvas, balls, PCT_CANVAS.Width, PCT_CANVAS.Height);
             }
 
-            for (int counter = 0; counter < boxes.Count; counter++)
+            for (int counter = 0; counter < glasses.Count; counter++)
             {
                 glasses[counter].React(ref canvas, balls, PCT_CANVAS.Width, PCT_CANVAS.Height);
             }
@@ -221,6 +222,20 @@ namespace BeerPong
         }
         private void level3()
         {
+            glasses.Add(new Glass(100, 120, balls.Count));
+            balls.Add(glasses[glasses.Count-1].a);
+            balls.Add(glasses[glasses.Count - 1].b);
+            balls.Add(glasses[glasses.Count - 1].c);
+            balls.Add(glasses[glasses.Count - 1].d);
+            balls.Add(glasses[glasses.Count - 1].e);
+            balls.Add(glasses[glasses.Count - 1].f);
+            balls.Add(glasses[glasses.Count - 1].g);
+            balls.Add(glasses[glasses.Count - 1].h);
+            balls.Add(glasses[glasses.Count - 1].i);
+            balls.Add(glasses[glasses.Count - 1].j);
+            balls.Add(glasses[glasses.Count - 1].k);
+            balls.Add(glasses[glasses.Count - 1].l);
+
             for (int b = 0; b < 14; b++)
                 balls.Add(new VPoint(0 + (b * 15), 270, balls.Count, true));
 
@@ -235,7 +250,6 @@ namespace BeerPong
 
             for (int b = 0; b < 3; b++)
                 balls.Add(new VPoint(380, 260 + (b * 15), balls.Count, true));
-
 
         }
 
@@ -327,7 +341,7 @@ namespace BeerPong
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Init();
+            
         }
     }
 }
