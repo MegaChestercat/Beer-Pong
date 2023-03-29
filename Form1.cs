@@ -78,21 +78,63 @@ namespace BeerPong
                 glasses[counter].React(ref canvas, balls, PCT_CANVAS.Width, PCT_CANVAS.Height);
             }
 
-            for (int i = 0; i < balls.Count; i++)
+            switch (res)
             {
-                if (balls[i].Id > 54)
-                {
-                    if (balls[i].Y >= glasses[0].a.Y - 20 && (balls[i].X >= glasses[0].a.X && balls[i].X <= glasses[0].f.X))
+                case 0:
+                case 1:
+                    for (int i = 0; i < balls.Count; i++)
                     {
-                        points1 += 2;
-                        kosPoints.Text = points1.ToString();
-                        balls.Remove(balls[i]);
+                        if (balls[i].Id > 66)
+                        {
+                            if ((balls[i].Y < glasses[0].a.Y && balls[i].Y > glasses[0].a.Y - 20) && (balls[i].X >= glasses[0].a.X && balls[i].X <= glasses[0].f.X))
+                            {
+                                points1 += 2;
+                                kosPoints.Text = points1.ToString();
+                                balls.Remove(balls[i]);
 
+                            }
+                            else if ((balls[i].Y < glasses[1].a.Y && balls[i].Y > glasses[1].a.Y - 20) && (balls[i].X >= glasses[1].a.X && balls[i].X <= glasses[1].f.X))
+                            {
+                                points2 += 5;
+                                tonPoints.Text = points2.ToString();
+                                balls.Remove(balls[i]);
+
+                            }
+                        }
                     }
-                }
+                    break;
+                case 2:
+                    for (int i = 0; i < balls.Count; i++)
+                    {
+                        if (balls[i].Id > 54)
+                        {
+                            if (balls[i].Y >= glasses[0].a.Y - 20 && (balls[i].X >= glasses[0].a.X && balls[i].X <= glasses[0].f.X))
+                            {
+                                points1 += 2;
+                                kosPoints.Text = points1.ToString();
+                                balls.Remove(balls[i]);
+
+                            }
+                        }
+                    }
+                    break;
+                case 3:
+                    for (int i = 0; i < balls.Count; i++)
+                    {
+                        if (balls[i].Id > 54)
+                        {
+                            if (balls[i].Y >= glasses[0].a.Y - 20 && (balls[i].X >= glasses[0].a.X && balls[i].X <= glasses[0].f.X))
+                            {
+                                points1 += 2;
+                                kosPoints.Text = points1.ToString();
+                                balls.Remove(balls[i]);
+
+                            }
+                        }
+                    }
+                    break;
             }
-
-
+            
             if (isMouseDown && isLeftButton && ballID != -1)
                 canvas.g.DrawLine(backTrajectory, balls[ballID].X, balls[ballID].Y, trigger.X, trigger.Y);
 
@@ -166,7 +208,7 @@ namespace BeerPong
 
 
 
-            glasses.Add(new Glass(120, 450, balls.Count));
+            glasses.Add(new Glass(120, 459, balls.Count, true));
 
             balls.Add(glasses[0].a);
             balls.Add(glasses[0].b);
@@ -182,7 +224,7 @@ namespace BeerPong
             balls.Add(glasses[0].l);
 
             
-            glasses.Add(new Glass(100, 120, balls.Count));
+            glasses.Add(new Glass(460, 45, balls.Count, true));
             balls.Add(glasses[1].a);
             balls.Add(glasses[1].b);
             balls.Add(glasses[1].c);
@@ -222,7 +264,7 @@ namespace BeerPong
         }
         private void level3()
         {
-            glasses.Add(new Glass(100, 120, balls.Count));
+            glasses.Add(new Glass(100, 120, balls.Count, true));
             balls.Add(glasses[glasses.Count-1].a);
             balls.Add(glasses[glasses.Count - 1].b);
             balls.Add(glasses[glasses.Count - 1].c);

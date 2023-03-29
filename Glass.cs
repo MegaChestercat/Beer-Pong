@@ -22,7 +22,7 @@ namespace BeerPong
         SolidBrush brush;
         
 
-        public Glass(int x, int y, int id)
+        public Glass(int x, int y, int id, bool pin)
         {
             this.id = id;
 
@@ -30,19 +30,19 @@ namespace BeerPong
 
             //Left side of the glass
             a = new VPoint(x, y, id);
-            b = new VPoint((int)a.Pos.X, (int)a.Pos.Y + 15, id+1);
-            c = new VPoint((int)b.Pos.X, (int)b.Pos.Y + 15, id+2);
-            d = new VPoint((int)c.Pos.X, (int)c.Pos.Y + 15, id+3);
-            e = new VPoint((int)d.Pos.X, (int)d.Pos.Y + 15, id+4);
+            b = new VPoint((int)a.Pos.X, (int)a.Pos.Y + 15, id+1, pin);
+            c = new VPoint((int)b.Pos.X, (int)b.Pos.Y + 15, id+2, pin);
+            d = new VPoint((int)c.Pos.X, (int)c.Pos.Y + 15, id+3, pin);
+            e = new VPoint((int)d.Pos.X, (int)d.Pos.Y + 15, id+4, pin);
             //right side of the glass
-            f = new VPoint((int)a.Pos.X + 45, (int)a.Pos.Y, id+5);
-            g = new VPoint((int)f.Pos.X, (int)f.Pos.Y + 15, id+6);
-            h = new VPoint((int)g.Pos.X, (int)g.Pos.Y + 15, id+7);
-            i = new VPoint((int)h.Pos.X, (int)h.Pos.Y + 15, id+8);
-            j = new VPoint((int)i.Pos.X, (int)i.Pos.Y + 15, id+9);
+            f = new VPoint((int)a.Pos.X + 45, (int)a.Pos.Y, id+5, pin);
+            g = new VPoint((int)f.Pos.X, (int)f.Pos.Y + 15, id+6, pin);
+            h = new VPoint((int)g.Pos.X, (int)g.Pos.Y + 15, id+7, pin);
+            i = new VPoint((int)h.Pos.X, (int)h.Pos.Y + 15, id+8, pin);
+            j = new VPoint((int)i.Pos.X, (int)i.Pos.Y + 15, id+9, pin);
             //base of the glass
-            k = new VPoint((int)e.Pos.X + 15, (int)e.Pos.Y, id+10);
-            l = new VPoint((int)k.Pos.X + 15, (int)k.Pos.Y, id+11);
+            k = new VPoint((int)e.Pos.X + 15, (int)e.Pos.Y, id+10, pin);
+            l = new VPoint((int)k.Pos.X + 15, (int)k.Pos.Y, id+11, pin);
 
             a.FromBody = true;
             b.FromBody = true;
