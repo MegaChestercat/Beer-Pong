@@ -7,7 +7,6 @@ namespace BeerPong
     {
         Canvas canvas;
         List<VPoint> balls;
-        //Random rnd;
         List<VBox> boxes;
         VSolver solver;
         List<Glass> glasses;
@@ -26,7 +25,6 @@ namespace BeerPong
         public Form1()
         {
             InitializeComponent();
-            Init();
         }
 
         private void Init()
@@ -40,7 +38,6 @@ namespace BeerPong
             backTrajectory = new Pen(Color.FromArgb(155, 250, 176), 10);
             backTrajectory.DashCap = System.Drawing.Drawing2D.DashCap.Round;
             backTrajectory.DashPattern = new float[] { 2.0F, 2.0F, 1.0F, 3.0F };
-            //rnd = new Random();
             canvas.FastClear();
             level1();
             /*
@@ -80,11 +77,11 @@ namespace BeerPong
                 glasses[counter].React(ref canvas, balls, PCT_CANVAS.Width, PCT_CANVAS.Height);
             }
 
-            for(int i = 0; i < balls.Count; i++)
+            for (int i = 0; i < balls.Count; i++)
             {
                 if (balls[i].Id > 54)
                 {
-                    if (balls[i].Y >= glasses[0].a.Y-20 && (balls[i].X >= glasses[0].a.X && balls[i].X <= glasses[0].f.X))
+                    if (balls[i].Y >= glasses[0].a.Y - 20 && (balls[i].X >= glasses[0].a.X && balls[i].X <= glasses[0].f.X))
                     {
                         points1 += 2;
                         kosPoints.Text = points1.ToString();
@@ -93,7 +90,7 @@ namespace BeerPong
                     }
                 }
             }
-            
+
 
             if (isMouseDown && isLeftButton && ballID != -1)
                 canvas.g.DrawLine(backTrajectory, balls[ballID].X, balls[ballID].Y, trigger.X, trigger.Y);
@@ -166,7 +163,7 @@ namespace BeerPong
             balls.Add(boxes[boxes.Count - 1].c);
             balls.Add(boxes[boxes.Count - 1].d);
 
-          
+
 
             glasses.Add(new Glass(120, 450, balls.Count, false));
 
@@ -326,6 +323,11 @@ namespace BeerPong
         private void lever1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //balls.RemoveAt(balls.Count - 2);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Init();
         }
     }
 }
