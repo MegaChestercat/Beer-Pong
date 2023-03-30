@@ -110,6 +110,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
+            pictureBox1.MouseDoubleClick += pictureBox1_MouseDoubleClick;
             // 
             // pictureBox2
             // 
@@ -122,6 +123,7 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 4;
             pictureBox2.TabStop = false;
+            pictureBox2.MouseDoubleClick += pictureBox2_MouseDoubleClick;
             // 
             // tonPoints
             // 

@@ -21,8 +21,7 @@ namespace BeerPong
         public int points1, points2 = 0;
         private WaveOutEvent outputDevice;
         private AudioFileReader audioFile;
-        Random ran;
-        int val;
+
 
 
 
@@ -48,7 +47,6 @@ namespace BeerPong
             backTrajectory.DashCap = System.Drawing.Drawing2D.DashCap.Round;
             backTrajectory.DashPattern = new float[] { 2.0F, 2.0F, 1.0F, 3.0F };
             canvas.FastClear();
-            ran = new Random();
             //level3();
 
             res = ShowLevelDialog();
@@ -492,7 +490,7 @@ namespace BeerPong
                 outputDevice.Init(audioFile);
                 outputDevice.Play();
             }
-            
+
         }
 
         private void gameTitle_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -542,23 +540,11 @@ namespace BeerPong
         private void lever1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //balls.RemoveAt(balls.Count - 2);
-            val = ran.Next(2 - 1 + 1) + 1;
-            if(val == 1)
-            {
-                outputDevice = new WaveOutEvent();
-                outputDevice.PlaybackStopped += OnPlaybackStopped;
-                audioFile = new AudioFileReader(@"..\..\..\Resources\Yamete.mp3");
-                outputDevice.Init(audioFile);
-                outputDevice.Play();
-            }
-            else if (val == 2)
-            {
-                outputDevice = new WaveOutEvent();
-                outputDevice.PlaybackStopped += OnPlaybackStopped;
-                audioFile = new AudioFileReader(@"..\..\..\Resources\Fnaf.mp3");
-                outputDevice.Init(audioFile);
-                outputDevice.Play();
-            }
+            outputDevice = new WaveOutEvent();
+            outputDevice.PlaybackStopped += OnPlaybackStopped;
+            audioFile = new AudioFileReader(@"..\..\..\Resources\Fnaf.mp3");
+            outputDevice.Init(audioFile);
+            outputDevice.Play();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -594,7 +580,34 @@ namespace BeerPong
             //outputDevice.Dispose();
             //audioFile.Dispose();
             audioFile = null;
-            
+
+        }
+
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            outputDevice = new WaveOutEvent();
+            outputDevice.PlaybackStopped += OnPlaybackStopped;
+            audioFile = new AudioFileReader(@"..\..\..\Resources\Yamete.mp3");
+            outputDevice.Init(audioFile);
+            outputDevice.Play();
+        }
+
+        private void pictureBox2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            outputDevice = new WaveOutEvent();
+            outputDevice.PlaybackStopped += OnPlaybackStopped;
+            audioFile = new AudioFileReader(@"..\..\..\Resources\compa.mp3");
+            outputDevice.Init(audioFile);
+            outputDevice.Play();
+        }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            outputDevice = new WaveOutEvent();
+            outputDevice.PlaybackStopped += OnPlaybackStopped;
+            audioFile = new AudioFileReader(@"..\..\..\Resources\Yamete.mp3");
+            outputDevice.Init(audioFile);
+            outputDevice.Play();
         }
     }
 }
