@@ -106,6 +106,7 @@ namespace BeerPong
             poles.Add(new VPole(f, k));
             poles.Add(new VPole(f, l));
 
+            /*
             poles.Add(new VPole(b, f));
             poles.Add(new VPole(b, g));
             poles.Add(new VPole(b, h));
@@ -136,7 +137,7 @@ namespace BeerPong
             poles.Add(new VPole(e, i));
             poles.Add(new VPole(e, j));
             poles.Add(new VPole(e, k));
-            poles.Add(new VPole(e, l));
+            poles.Add(new VPole(e, l));*/
 
             poles.Add(new VPole(a, b));
             poles.Add(new VPole(b, c));
@@ -301,7 +302,7 @@ namespace BeerPong
             colPoles.Add(new VPole(new VPoint((int)pts[0].X, (int)pts[0].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[5].X, (int)pts[5].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[5].X, (int)pts[5].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
-
+            /*
             colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[5].X, (int)pts[5].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[6].X, (int)pts[6].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[7].X, (int)pts[7].Y)));
@@ -333,7 +334,7 @@ namespace BeerPong
             colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[9].X, (int)pts[9].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
-
+            */
 
             colPoles.Add(new VPole(new VPoint((int)pts[0].X, (int)pts[0].Y), new VPoint((int)pts[1].X, (int)pts[1].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[2].X, (int)pts[2].Y)));

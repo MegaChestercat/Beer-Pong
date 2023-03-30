@@ -86,6 +86,12 @@ namespace BeerPong
             Init(x, y, 0, 0);
         }
 
+        public VPoint(int x, int y, int id, int size)
+        {
+            this.id = id;
+            Init(x, y, 0, 0, size);
+        }
+
         public VPoint(int x, int y, int id, bool Pinned)
         {
             this.id = id;
@@ -130,6 +136,27 @@ namespace BeerPong
             gravity = new Vec2(0, 1);
 
             radius =8;
+            diameter = radius + radius;
+            c = Color.Red;
+            Mass = 1;
+            brush = new SolidBrush(c);
+            if (IsPinned)
+            {
+                Pin();
+            }
+        }
+
+        public void Init(int x, int y, float vx, float vy, int size)
+        {
+            pos = new Vec2(x, y);
+            old = new Vec2(x, y);
+
+            friction = 0.99f;
+            groundFriction = 0.7f;
+
+            gravity = new Vec2(0, 1);
+
+            radius = size;
             diameter = radius + radius;
             c = Color.Red;
             Mass = 1;

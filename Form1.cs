@@ -200,7 +200,7 @@ namespace BeerPong
             for (int b = 0; b < 3; b++)
                 balls.Add(new VPoint(380, 260 + (b * 15), balls.Count, true));
 
-            boxes.Add(new VBox(480, 450, 50, 50, balls.Count));
+            boxes.Add(new VBox(480, 450, 50, 50, balls.Count, false));
             balls.Add(boxes[boxes.Count - 1].a);
             balls.Add(boxes[boxes.Count - 1].b);
             balls.Add(boxes[boxes.Count - 1].c);
@@ -208,35 +208,55 @@ namespace BeerPong
 
 
 
-            glasses.Add(new Glass(120, 459, balls.Count, true));
+            glasses.Add(new Glass(120, 442, balls.Count, false));
 
-            balls.Add(glasses[0].a);
-            balls.Add(glasses[0].b);
-            balls.Add(glasses[0].c);
-            balls.Add(glasses[0].d);
-            balls.Add(glasses[0].e);
-            balls.Add(glasses[0].f);
-            balls.Add(glasses[0].g);
-            balls.Add(glasses[0].h);
-            balls.Add(glasses[0].i);
-            balls.Add(glasses[0].j);
-            balls.Add(glasses[0].k);
-            balls.Add(glasses[0].l);
+            balls.Add(glasses[glasses.Count - 1].a);
+            balls.Add(glasses[glasses.Count - 1].b);
+            balls.Add(glasses[glasses.Count - 1].c);
+            balls.Add(glasses[glasses.Count - 1].d);
+            balls.Add(glasses[glasses.Count - 1].e);
+            balls.Add(glasses[glasses.Count - 1].f);
+            balls.Add(glasses[glasses.Count - 1].g);
+            balls.Add(glasses[glasses.Count - 1].h);
+            balls.Add(glasses[glasses.Count - 1].i);
+            balls.Add(glasses[glasses.Count - 1].j);
+            balls.Add(glasses[glasses.Count - 1].k);
+            balls.Add(glasses[glasses.Count - 1].l);
 
 
             glasses.Add(new Glass(460, 45, balls.Count, true));
-            balls.Add(glasses[1].a);
-            balls.Add(glasses[1].b);
-            balls.Add(glasses[1].c);
-            balls.Add(glasses[1].d);
-            balls.Add(glasses[1].e);
-            balls.Add(glasses[1].f);
-            balls.Add(glasses[1].g);
-            balls.Add(glasses[1].h);
-            balls.Add(glasses[1].i);
-            balls.Add(glasses[1].j);
-            balls.Add(glasses[1].k);
-            balls.Add(glasses[1].l);
+            balls.Add(glasses[glasses.Count - 1].a);
+            balls.Add(glasses[glasses.Count - 1].b);
+            balls.Add(glasses[glasses.Count - 1].c);
+            balls.Add(glasses[glasses.Count - 1].d);
+            balls.Add(glasses[glasses.Count - 1].e);
+            balls.Add(glasses[glasses.Count - 1].f);
+            balls.Add(glasses[glasses.Count - 1].g);
+            balls.Add(glasses[glasses.Count - 1].h);
+            balls.Add(glasses[glasses.Count - 1].i);
+            balls.Add(glasses[glasses.Count - 1].j);
+            balls.Add(glasses[glasses.Count - 1].k);
+            balls.Add(glasses[glasses.Count - 1].l);
+
+            boxes.Add(new VBox(850, 477, 50, 50, balls.Count, true));
+            balls.Add(boxes[boxes.Count - 1].a);
+            balls.Add(boxes[boxes.Count - 1].b);
+            balls.Add(boxes[boxes.Count - 1].c);
+            balls.Add(boxes[boxes.Count - 1].d);
+
+            glasses.Add(new Glass(850, 372, balls.Count, true));
+            balls.Add(glasses[glasses.Count - 1].a);
+            balls.Add(glasses[glasses.Count - 1].b);
+            balls.Add(glasses[glasses.Count - 1].c);
+            balls.Add(glasses[glasses.Count - 1].d);
+            balls.Add(glasses[glasses.Count - 1].e);
+            balls.Add(glasses[glasses.Count - 1].f);
+            balls.Add(glasses[glasses.Count - 1].g);
+            balls.Add(glasses[glasses.Count - 1].h);
+            balls.Add(glasses[glasses.Count - 1].i);
+            balls.Add(glasses[glasses.Count - 1].j);
+            balls.Add(glasses[glasses.Count - 1].k);
+            balls.Add(glasses[glasses.Count - 1].l);
         }
 
         private void level2()
@@ -256,7 +276,7 @@ namespace BeerPong
             for (int b = 0; b < 3; b++)
                 balls.Add(new VPoint(380, 260 + (b * 15), balls.Count, true));
 
-            boxes.Add(new VBox(200, 150, 50, 50, balls.Count));
+            boxes.Add(new VBox(200, 150, 50, 50, balls.Count, false));
             balls.Add(boxes[boxes.Count - 1].a);
             balls.Add(boxes[boxes.Count - 1].b);
             balls.Add(boxes[boxes.Count - 1].c);
@@ -373,7 +393,7 @@ namespace BeerPong
 
         private void lever1_MouseClick(object sender, MouseEventArgs e)
         {
-            balls.Add(new VPoint(e.X, e.Y, balls.Count));
+            balls.Add(new VPoint(e.X, e.Y, balls.Count, 12));
         }
 
         private void lever1_MouseDoubleClick(object sender, MouseEventArgs e)

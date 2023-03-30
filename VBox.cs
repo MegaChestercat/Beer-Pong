@@ -25,17 +25,17 @@ namespace BeerPong
         Color color, c1;
         SolidBrush brush;
 
-        public VBox(int x, int y, int width, int height, int id)
+        public VBox(int x, int y, int width, int height, int id, bool pin)
         {
             this.id = id;
             this.width = width;
             this.height = height;
             pos = new Vec2(x, y);
             
-            a = new VPoint(x - (width / 2), y - (height / 2), ran.Next(5), ran.Next(-2, 2), id, false);
-            b = new VPoint(x + (width / 2), y - (height / 2), id + 1);
-            c = new VPoint(x + (width / 2), y + (height / 2), id + 2);
-            d = new VPoint(x - (width / 2), y + (height / 2), id + 3);
+            a = new VPoint(x - (width / 2), y - (height / 2), ran.Next(5), ran.Next(-2, 2), id, pin);
+            b = new VPoint(x + (width / 2), y - (height / 2), id + 1, pin);
+            c = new VPoint(x + (width / 2), y + (height / 2), id + 2, pin);
+            d = new VPoint(x - (width / 2), y + (height / 2), id + 3, pin);
             p1 = new VPole(a, b);
             p2 = new VPole(c, d);
             p3 = new VPole(a, c);
