@@ -42,15 +42,19 @@
             label2 = new Label();
             timerCounter = new Label();
             label3 = new Label();
-            start = new PictureBox();
+            resume = new PictureBox();
             pause = new PictureBox();
             lever1 = new PictureBox();
+            start = new PictureBox();
+            PreStartScreen = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)PCT_CANVAS).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)start).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)resume).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pause).BeginInit();
             ((System.ComponentModel.ISupportInitialize)lever1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)start).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PreStartScreen).BeginInit();
             SuspendLayout();
             // 
             // timer1
@@ -63,9 +67,9 @@
             // 
             PCT_CANVAS.BackColor = Color.Black;
             PCT_CANVAS.Enabled = false;
-            PCT_CANVAS.Location = new Point(14, 110);
+            PCT_CANVAS.Location = new Point(-4, 110);
             PCT_CANVAS.Name = "PCT_CANVAS";
-            PCT_CANVAS.Size = new Size(924, 517);
+            PCT_CANVAS.Size = new Size(958, 525);
             PCT_CANVAS.TabIndex = 0;
             PCT_CANVAS.TabStop = false;
             PCT_CANVAS.MouseDown += PCT_CANVAS_MouseDown;
@@ -75,7 +79,9 @@
             // tonayanLBL
             // 
             tonayanLBL.AutoSize = true;
+            tonayanLBL.BackColor = Color.Transparent;
             tonayanLBL.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            tonayanLBL.ForeColor = Color.White;
             tonayanLBL.Location = new Point(657, 65);
             tonayanLBL.Name = "tonayanLBL";
             tonayanLBL.Size = new Size(157, 25);
@@ -85,7 +91,9 @@
             // KosakoLBL
             // 
             KosakoLBL.AutoSize = true;
+            KosakoLBL.BackColor = Color.Transparent;
             KosakoLBL.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            KosakoLBL.ForeColor = Color.White;
             KosakoLBL.Location = new Point(137, 65);
             KosakoLBL.Name = "KosakoLBL";
             KosakoLBL.Size = new Size(142, 25);
@@ -94,6 +102,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = Resource1.Kosako;
             pictureBox1.Location = new Point(81, 44);
             pictureBox1.Name = "pictureBox1";
@@ -104,6 +113,7 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.BackColor = Color.Transparent;
             pictureBox2.BackgroundImage = Resource1.Tonayan;
             pictureBox2.Image = Resource1.Tonayan;
             pictureBox2.Location = new Point(601, 44);
@@ -116,7 +126,9 @@
             // tonPoints
             // 
             tonPoints.AutoSize = true;
+            tonPoints.BackColor = Color.Transparent;
             tonPoints.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            tonPoints.ForeColor = Color.White;
             tonPoints.Location = new Point(820, 65);
             tonPoints.Name = "tonPoints";
             tonPoints.Size = new Size(23, 25);
@@ -126,7 +138,9 @@
             // kosPoints
             // 
             kosPoints.AutoSize = true;
+            kosPoints.BackColor = Color.Transparent;
             kosPoints.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            kosPoints.ForeColor = Color.White;
             kosPoints.Location = new Point(285, 65);
             kosPoints.Name = "kosPoints";
             kosPoints.Size = new Size(23, 25);
@@ -136,7 +150,9 @@
             // gameTitle
             // 
             gameTitle.AutoSize = true;
+            gameTitle.BackColor = Color.Transparent;
             gameTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            gameTitle.ForeColor = SystemColors.Control;
             gameTitle.Location = new Point(353, 9);
             gameTitle.Name = "gameTitle";
             gameTitle.Size = new Size(212, 30);
@@ -152,7 +168,9 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.White;
             label2.Location = new Point(639, 9);
             label2.Name = "label2";
             label2.Size = new Size(139, 21);
@@ -162,7 +180,9 @@
             // timerCounter
             // 
             timerCounter.AutoSize = true;
+            timerCounter.BackColor = Color.Transparent;
             timerCounter.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            timerCounter.ForeColor = Color.White;
             timerCounter.Location = new Point(784, 9);
             timerCounter.Name = "timerCounter";
             timerCounter.Size = new Size(19, 21);
@@ -172,26 +192,33 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.White;
             label3.Location = new Point(820, 9);
             label3.Name = "label3";
             label3.Size = new Size(71, 21);
             label3.TabIndex = 12;
             label3.Text = "seconds";
             // 
-            // start
+            // resume
             // 
-            start.Image = Resource1.start_button;
-            start.Location = new Point(340, 54);
-            start.Name = "start";
-            start.Size = new Size(119, 36);
-            start.SizeMode = PictureBoxSizeMode.StretchImage;
-            start.TabIndex = 13;
-            start.TabStop = false;
-            start.MouseClick += start_MouseClick;
+            resume.BackColor = Color.Transparent;
+            resume.Enabled = false;
+            resume.Image = Resource1.resumeBTN;
+            resume.Location = new Point(340, 54);
+            resume.Name = "resume";
+            resume.Size = new Size(119, 36);
+            resume.SizeMode = PictureBoxSizeMode.StretchImage;
+            resume.TabIndex = 13;
+            resume.TabStop = false;
+            resume.Visible = false;
+            resume.MouseClick += resume_MouseClick;
             // 
             // pause
             // 
+            pause.BackColor = Color.Transparent;
+            pause.Enabled = false;
             pause.Image = Resource1.pause_button;
             pause.Location = new Point(465, 54);
             pause.Name = "pause";
@@ -199,29 +226,59 @@
             pause.SizeMode = PictureBoxSizeMode.StretchImage;
             pause.TabIndex = 14;
             pause.TabStop = false;
+            pause.Visible = false;
             pause.MouseClick += pause_MouseClick;
             // 
             // lever1
             // 
-            lever1.BackColor = Color.DarkGray;
-            lever1.Image = Resource1.lever;
-            lever1.Location = new Point(14, 258);
+            lever1.BackColor = Color.Black;
+            lever1.Enabled = false;
+            lever1.Image = Resource1.BTN1;
+            lever1.Location = new Point(-1, 258);
             lever1.Name = "lever1";
             lever1.Size = new Size(60, 80);
             lever1.SizeMode = PictureBoxSizeMode.Zoom;
             lever1.TabIndex = 15;
             lever1.TabStop = false;
+            lever1.Visible = false;
             lever1.MouseClick += lever1_MouseClick;
             lever1.MouseDoubleClick += lever1_MouseDoubleClick;
+            lever1.MouseDown += lever1_MouseDown;
+            lever1.MouseUp += lever1_MouseUp;
+            // 
+            // start
+            // 
+            start.BackColor = Color.Transparent;
+            start.Image = Resource1.startBTN;
+            start.Location = new Point(427, 329);
+            start.Name = "start";
+            start.Size = new Size(157, 49);
+            start.SizeMode = PictureBoxSizeMode.AutoSize;
+            start.TabIndex = 16;
+            start.TabStop = false;
+            start.MouseClick += start_MouseClick;
+            // 
+            // PreStartScreen
+            // 
+            PreStartScreen.BackColor = Color.Black;
+            PreStartScreen.Enabled = false;
+            PreStartScreen.Location = new Point(-1, 110);
+            PreStartScreen.Name = "PreStartScreen";
+            PreStartScreen.Size = new Size(958, 525);
+            PreStartScreen.TabIndex = 17;
+            PreStartScreen.TabStop = false;
             // 
             // Form1
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.ControlDark;
+            BackgroundImage = Resource1.bg;
             ClientSize = new Size(950, 639);
+            Controls.Add(start);
+            Controls.Add(PreStartScreen);
             Controls.Add(lever1);
             Controls.Add(pause);
-            Controls.Add(start);
+            Controls.Add(resume);
             Controls.Add(label3);
             Controls.Add(timerCounter);
             Controls.Add(label2);
@@ -244,9 +301,11 @@
             ((System.ComponentModel.ISupportInitialize)PCT_CANVAS).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)start).EndInit();
+            ((System.ComponentModel.ISupportInitialize)resume).EndInit();
             ((System.ComponentModel.ISupportInitialize)pause).EndInit();
             ((System.ComponentModel.ISupportInitialize)lever1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)start).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PreStartScreen).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -266,8 +325,10 @@
         private Label label2;
         private Label timerCounter;
         private Label label3;
-        private PictureBox start;
+        private PictureBox resume;
         private PictureBox pause;
         private PictureBox lever1;
+        private PictureBox start;
+        private PictureBox PreStartScreen;
     }
 }

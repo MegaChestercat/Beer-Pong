@@ -56,6 +56,34 @@ namespace BeerPong
             bits[res + 3] = c.A; //Transparency
         }
 
+        public void LessFast()
+        {
+            int div = 16;
+            Parallel.For(0, bits.Length / div, i => // unrolling 
+            {
+                bits[(i * div) + 0] = 0;
+                bits[(i * div) + 1] = 0;
+                bits[(i * div) + 2] = 0;
+                bits[(i * div) + 3] = 0;
+
+                bits[(i * div) + 4] = 0;
+                bits[(i * div) + 5] = 0;
+                bits[(i * div) + 6] = 0;
+                bits[(i * div) + 7] = 0;
+
+                bits[(i * div) + 8] = 0;
+                bits[(i * div) + 9] = 0;
+                bits[(i * div) + 10] = 0;
+                bits[(i * div) + 11] = 0;
+
+                bits[(i * div) + 12] = 0;
+                bits[(i * div) + 13] = 0;
+                bits[(i * div) + 14] = 0;
+                bits[(i * div) + 15] = 0;
+            }
+            );
+        }
+
         public void FastClear()
         {
             unsafe

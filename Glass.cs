@@ -390,9 +390,9 @@ namespace BeerPong
         public override void DrawBody(ref Canvas canvas)
         {
             //p.Width = a.Diameter;
-            canvas.g.DrawPolygon(p, orderedPts);
+            //canvas.g.DrawPolygon(p, orderedPts);
             //canvas.g.FillPolygon(brush, orderedPts);
-            //canvas.g.DrawImage(Resource1.red_glass, pts[0].X, pts[0].Y, 45, 60);
+            canvas.g.DrawImage(Resource1.glass, pts[0].X, pts[0].Y, 45, 60);
         }
     }
 }

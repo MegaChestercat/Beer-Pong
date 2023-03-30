@@ -1,5 +1,7 @@
 using System.Linq;
 using System.Runtime.CompilerServices;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 
 namespace BeerPong
 {
@@ -14,13 +16,19 @@ namespace BeerPong
         Point mouse, trigger;
         bool isMouseDown, isLeftButton;
         int ballID;
-        int countdown = 120;
+        int countdown = 180;
         public int res;
         public int points1, points2 = 0;
+        private WaveOutEvent outputDevice;
+        private AudioFileReader audioFile;
+        Random ran;
+        int val;
 
 
 
         private readonly KonamiSequence _konamiSequence = new KonamiSequence();
+        private readonly America _americaSequence = new America();
+
 
         public Form1()
         {
@@ -40,8 +48,9 @@ namespace BeerPong
             backTrajectory.DashCap = System.Drawing.Drawing2D.DashCap.Round;
             backTrajectory.DashPattern = new float[] { 2.0F, 2.0F, 1.0F, 3.0F };
             canvas.FastClear();
-            level1();
-            /*
+            ran = new Random();
+            //level3();
+
             res = ShowLevelDialog();
 
             switch (res)
@@ -55,11 +64,8 @@ namespace BeerPong
                 case 2:
                     level2();
                     break;
-                case 3:
-                    level3();
-                    break;
 
-            }*/
+            }
             PCT_CANVAS.Invalidate();
         }
 
@@ -84,20 +90,33 @@ namespace BeerPong
                 case 1:
                     for (int i = 0; i < balls.Count; i++)
                     {
-                        if (balls[i].Id > 66)
+                        if (balls[i].Id > 100)
                         {
                             if ((balls[i].Y < glasses[0].a.Y && balls[i].Y > glasses[0].a.Y - 20) && (balls[i].X >= glasses[0].a.X && balls[i].X <= glasses[0].f.X))
                             {
-                                points1 += 2;
+                                points1 += 20;
                                 kosPoints.Text = points1.ToString();
-                                balls.Remove(balls[i]);
+                                balls[i].X = 10;
+                                balls[i].Y = 0;
+
 
                             }
                             else if ((balls[i].Y < glasses[1].a.Y && balls[i].Y > glasses[1].a.Y - 20) && (balls[i].X >= glasses[1].a.X && balls[i].X <= glasses[1].f.X))
                             {
-                                points2 += 5;
+                                points1 += 27;
+                                points2 += 60;
                                 tonPoints.Text = points2.ToString();
-                                balls.Remove(balls[i]);
+                                kosPoints.Text = points1.ToString();
+                                balls[i].X = 10;
+                                balls[i].Y = 0;
+
+                            }
+                            else if ((balls[i].Y < glasses[2].a.Y && balls[i].Y > glasses[2].a.Y - 20) && (balls[i].X >= glasses[2].a.X && balls[i].X <= glasses[2].f.X))
+                            {
+                                points2 += 30;
+                                tonPoints.Text = points2.ToString();
+                                balls[i].X = 10;
+                                balls[i].Y = 0;
 
                             }
                         }
@@ -106,29 +125,30 @@ namespace BeerPong
                 case 2:
                     for (int i = 0; i < balls.Count; i++)
                     {
-                        if (balls[i].Id > 54)
+                        if (balls[i].Id > 142)
                         {
-                            if (balls[i].Y >= glasses[0].a.Y - 20 && (balls[i].X >= glasses[0].a.X && balls[i].X <= glasses[0].f.X))
+                            if ((balls[i].Y < glasses[0].a.Y && balls[i].Y > glasses[0].a.Y - 20) && (balls[i].X >= glasses[0].a.X && balls[i].X <= glasses[0].f.X))
                             {
-                                points1 += 2;
-                                kosPoints.Text = points1.ToString();
-                                balls.Remove(balls[i]);
-
+                                points2 += 29;
+                                tonPoints.Text = points2.ToString();
+                                balls[i].X = 10;
+                                balls[i].Y = 0;
                             }
-                        }
-                    }
-                    break;
-                case 3:
-                    for (int i = 0; i < balls.Count; i++)
-                    {
-                        if (balls[i].Id > 54)
-                        {
-                            if (balls[i].Y >= glasses[0].a.Y - 20 && (balls[i].X >= glasses[0].a.X && balls[i].X <= glasses[0].f.X))
+                            else if ((balls[i].Y < glasses[1].a.Y && balls[i].Y > glasses[1].a.Y - 20) && (balls[i].X >= glasses[1].a.X && balls[i].X <= glasses[1].f.X))
                             {
-                                points1 += 2;
+                                points1 += 65;
+                                points2 += 44;
                                 kosPoints.Text = points1.ToString();
-                                balls.Remove(balls[i]);
-
+                                tonPoints.Text = points2.ToString();
+                                balls[i].X = 10;
+                                balls[i].Y = 0;
+                            }
+                            else if ((balls[i].Y < glasses[2].a.Y && balls[i].Y > glasses[2].a.Y - 20) && (balls[i].X >= glasses[2].a.X && balls[i].X <= glasses[2].f.X))
+                            {
+                                points1 += 33;
+                                kosPoints.Text = points1.ToString();
+                                balls[i].X = 10;
+                                balls[i].Y = 0;
                             }
                         }
                     }
@@ -148,6 +168,15 @@ namespace BeerPong
             {
                 MessageBox.Show("Konamiiii");
                 _konamiSequence.EasterEgg();
+            }
+            if (_americaSequence.IsCompletedBy(e.KeyCode))
+            {
+                MessageBox.Show("Playing CUMBIA DE LAS ÁGUILAS DEL AMÉRICA...");
+                outputDevice = new WaveOutEvent();
+                outputDevice.PlaybackStopped += OnPlaybackStopped;
+                audioFile = new AudioFileReader(@"..\..\..\Resources\america.mp3");
+                outputDevice.Init(audioFile);
+                outputDevice.Play();
             }
         }
 
@@ -185,14 +214,28 @@ namespace BeerPong
 
         private void level1()
         {
+
             for (int b = 0; b < 14; b++)
                 balls.Add(new VPoint(0 + (b * 15), 270, balls.Count, true));
+
+            for (int b = 0; b < 4; b++)
+                balls.Add(new VPoint(210 + (b * 15), (int)(canvas.Height * .5f - b * 6), balls.Count, true));
+
 
             for (int b = 0; b < 9; b++)
                 balls.Add(new VPoint(420 + (b * 15), 122, balls.Count, true));
 
+
             for (int b = 0; b < 8; b++)
                 balls.Add(new VPoint(800 + (b * 15), (int)(canvas.Height * .5f - b * 6), balls.Count, true));
+            for (int b = 0; b < 2; b++)
+                balls.Add(new VPoint(800 - (b * 15), 270, balls.Count, true));
+
+            for (int b = 0; b < 2; b++)
+                balls.Add(new VPoint(770 - (b * 15), (int)(270 - b * 6), balls.Count, true));
+
+            for (int b = 0; b < 6; b++)
+                balls.Add(new VPoint(270 + (b * 15), 430, balls.Count, true));
 
             for (int b = 0; b < 5; b++)
                 balls.Add(new VPoint(550 + (b * 15), (int)(380 + b * 6), balls.Count, true));
@@ -201,6 +244,12 @@ namespace BeerPong
                 balls.Add(new VPoint(380, 260 + (b * 15), balls.Count, true));
 
             boxes.Add(new VBox(480, 450, 50, 50, balls.Count, false));
+            balls.Add(boxes[boxes.Count - 1].a);
+            balls.Add(boxes[boxes.Count - 1].b);
+            balls.Add(boxes[boxes.Count - 1].c);
+            balls.Add(boxes[boxes.Count - 1].d);
+
+            boxes.Add(new VBox(610, 450, 50, 50, balls.Count, false));
             balls.Add(boxes[boxes.Count - 1].a);
             balls.Add(boxes[boxes.Count - 1].b);
             balls.Add(boxes[boxes.Count - 1].c);
@@ -261,30 +310,73 @@ namespace BeerPong
 
         private void level2()
         {
-            for (int b = 0; b < 14; b++)
-                balls.Add(new VPoint(0 + (b * 15), 270, balls.Count, true));
+            //Plataforma de recepcion de pelota
+            for (int b = 0; b < 2; b++)
+                balls.Add(new VPoint(30 + (b * 15), 100, balls.Count, true));
+            for (int b = 0; b < 1; b++)
+                balls.Add(new VPoint(60 + (b * 15), 85, balls.Count, true));
+            for (int b = 0; b < 1; b++)
+                balls.Add(new VPoint(10 + (b * 15), 85, balls.Count, true));
 
-            for (int b = 0; b < 9; b++)
-                balls.Add(new VPoint(420 + (b * 15), 122, balls.Count, true));
+            // Estorbos verticales 1
+
+            for (int b = 0; b < 7; b++)
+                balls.Add(new VPoint(200, 40 + (b * 15), balls.Count, true));
+
+            for (int b = 0; b < 7; b++)
+                balls.Add(new VPoint(200, 200 + (b * 15), balls.Count, true));
+
+            for (int b = 0; b < 7; b++)
+                balls.Add(new VPoint(200, 360 + (b * 15), balls.Count, true));
+
+
+            //Estorbos verticales 2
+            for (int b = 0; b < 4; b++)
+                balls.Add(new VPoint(400, 230 + (b * 15), balls.Count, true));
+
+            //Estorbos diagonales 
+
 
             for (int b = 0; b < 8; b++)
-                balls.Add(new VPoint(800 + (b * 15), (int)(canvas.Height * .5f - b * 6), balls.Count, true));
+                balls.Add(new VPoint(250 + (b * 15), (int)(canvas.Height * .5f - b * 6) - 50, balls.Count, true));
 
-            for (int b = 0; b < 5; b++)
-                balls.Add(new VPoint(550 + (b * 15), (int)(380 + b * 6), balls.Count, true));
+            for (int b = 0; b < 8; b++)
+                balls.Add(new VPoint(250 + (b * 15), (int)(canvas.Height * .5f - b * 6) + 110, balls.Count, true));
 
-            for (int b = 0; b < 3; b++)
-                balls.Add(new VPoint(380, 260 + (b * 15), balls.Count, true));
 
-            boxes.Add(new VBox(200, 150, 50, 50, balls.Count, false));
+            // Estorbo diagonal abajo 
+            for (int b = 0; b < 6; b++)
+                balls.Add(new VPoint(440 + (b * 15), (int)(330 + b * 15), balls.Count, true));
+
+
+            //Estorbos horizontales derecha 
+            for (int b = 0; b < 9; b++)
+                balls.Add(new VPoint(700 + (b * 15), 122, balls.Count, true));
+
+            for (int b = 0; b < 9; b++)
+                balls.Add(new VPoint(750 + (b * 15), 250, balls.Count, true));
+
+            //Estorbo vertical grande
+
+            for (int b = 0; b < 20; b++)
+                balls.Add(new VPoint(590, 40 + (b * 15), balls.Count, true));
+
+
+
+
+            //Caja 1
+            boxes.Add(new VBox(150, 445, 50, 50, balls.Count, false));
             balls.Add(boxes[boxes.Count - 1].a);
             balls.Add(boxes[boxes.Count - 1].b);
             balls.Add(boxes[boxes.Count - 1].c);
             balls.Add(boxes[boxes.Count - 1].d);
-        }
-        private void level3()
-        {
-            glasses.Add(new Glass(100, 120, balls.Count, true));
+            //Plataforma para caja 1
+            for (int b = 0; b < 5; b++)
+                balls.Add(new VPoint(55 + (b * 15), 400, balls.Count, true));
+
+            //Vaso 1
+
+            glasses.Add(new Glass(55, 320, balls.Count, true));
             balls.Add(glasses[glasses.Count - 1].a);
             balls.Add(glasses[glasses.Count - 1].b);
             balls.Add(glasses[glasses.Count - 1].c);
@@ -298,23 +390,50 @@ namespace BeerPong
             balls.Add(glasses[glasses.Count - 1].k);
             balls.Add(glasses[glasses.Count - 1].l);
 
-            for (int b = 0; b < 14; b++)
-                balls.Add(new VPoint(0 + (b * 15), 270, balls.Count, true));
 
-            for (int b = 0; b < 9; b++)
-                balls.Add(new VPoint(420 + (b * 15), 122, balls.Count, true));
+            //Caja 2
+            boxes.Add(new VBox(600, 477, 50, 50, balls.Count, false));
+            balls.Add(boxes[boxes.Count - 1].a);
+            balls.Add(boxes[boxes.Count - 1].b);
+            balls.Add(boxes[boxes.Count - 1].c);
+            balls.Add(boxes[boxes.Count - 1].d);
 
-            for (int b = 0; b < 8; b++)
-                balls.Add(new VPoint(800 + (b * 15), (int)(canvas.Height * .5f - b * 6), balls.Count, true));
 
+            //Vaso 2
+            glasses.Add(new Glass(780, 440, balls.Count, true));
+            balls.Add(glasses[glasses.Count - 1].a);
+            balls.Add(glasses[glasses.Count - 1].b);
+            balls.Add(glasses[glasses.Count - 1].c);
+            balls.Add(glasses[glasses.Count - 1].d);
+            balls.Add(glasses[glasses.Count - 1].e);
+            balls.Add(glasses[glasses.Count - 1].f);
+            balls.Add(glasses[glasses.Count - 1].g);
+            balls.Add(glasses[glasses.Count - 1].h);
+            balls.Add(glasses[glasses.Count - 1].i);
+            balls.Add(glasses[glasses.Count - 1].j);
+            balls.Add(glasses[glasses.Count - 1].k);
+            balls.Add(glasses[glasses.Count - 1].l);
+
+            //Vaso 3
+            glasses.Add(new Glass(750, 47, balls.Count, true));
+            balls.Add(glasses[glasses.Count - 1].a);
+            balls.Add(glasses[glasses.Count - 1].b);
+            balls.Add(glasses[glasses.Count - 1].c);
+            balls.Add(glasses[glasses.Count - 1].d);
+            balls.Add(glasses[glasses.Count - 1].e);
+            balls.Add(glasses[glasses.Count - 1].f);
+            balls.Add(glasses[glasses.Count - 1].g);
+            balls.Add(glasses[glasses.Count - 1].h);
+            balls.Add(glasses[glasses.Count - 1].i);
+            balls.Add(glasses[glasses.Count - 1].j);
+            balls.Add(glasses[glasses.Count - 1].k);
+            balls.Add(glasses[glasses.Count - 1].l);
+
+            // Estorbo diagonal abajo vaso 
             for (int b = 0; b < 5; b++)
-                balls.Add(new VPoint(550 + (b * 15), (int)(380 + b * 6), balls.Count, true));
-
-            for (int b = 0; b < 3; b++)
-                balls.Add(new VPoint(380, 260 + (b * 15), balls.Count, true));
+                balls.Add(new VPoint(700 + (b * 15), (int)(360 + b * 15), balls.Count, true));
 
         }
-
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
@@ -334,24 +453,51 @@ namespace BeerPong
 
         private void start_MouseClick(object sender, MouseEventArgs e)
         {
+            PreStartScreen.Visible = false;
+            start.Visible = false;
             start.Enabled = false;
+            resume.Visible = true;
+            resume.Enabled = false;
+            pause.Visible = true;
             pause.Enabled = true;
             PCT_CANVAS.Enabled = true;
+            lever1.Enabled = true;
+            lever1.Visible = true;
             timerCounter.Text = countdown.ToString();
             gameTimer.Enabled = true;
         }
 
         private void pause_MouseClick(object sender, MouseEventArgs e)
         {
-            start.Enabled = true;
+            lever1.Enabled = false;
+            resume.Enabled = true;
             pause.Enabled = false;
             PCT_CANVAS.Enabled = false;
             gameTimer.Enabled = false;
+
+            if (outputDevice == null && audioFile == null)
+            {
+                outputDevice = new WaveOutEvent();
+                outputDevice.PlaybackStopped += OnPlaybackStopped;
+                audioFile = new AudioFileReader(@"..\..\..\Resources\pause_sound.mp3");
+                outputDevice.Init(audioFile);
+                outputDevice.Play();
+            }
+            else
+            {
+                outputDevice.Stop();
+                outputDevice = new WaveOutEvent();
+                outputDevice.PlaybackStopped += OnPlaybackStopped;
+                audioFile = new AudioFileReader(@"..\..\..\Resources\pause_sound.mp3");
+                outputDevice.Init(audioFile);
+                outputDevice.Play();
+            }
+            
         }
 
         private void gameTitle_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            MessageBox.Show("Mexican Beer Pong \n\nProgrammers: \n\nMario Arturo Sánchez Ruelas \n\n\nDesigners: \n\nMario Arturo Sánchez Ruelas", "Credits");
+            MessageBox.Show("Mexican Beer Pong \n\nProgrammers: \n\nMario Arturo Sánchez Ruelas, Ruben Dario Suarez Diaz, Hector Emiliano Zepeda Gonzalez\n\n\nDesigners: \n\nMario Arturo Sánchez Ruelas, Ruben Dario Suarez Diaz, Hector Emiliano Zepeda Gonzalez", "Credits");
         }
 
         public static int ShowLevelDialog()
@@ -364,7 +510,7 @@ namespace BeerPong
             ComboBox options = new ComboBox();
             options.Items.Add("Level 1");
             options.Items.Add("Level 2");
-            options.Items.Add("Level 3");
+            //options.Items.Add("Level 3");
             Button ok = new Button();
             ok.Text = "Continue";
             ok.MouseClick += (sender, e) => { prompt.Close(); };
@@ -382,9 +528,6 @@ namespace BeerPong
                 case 1:
                     return 2;
                     break;
-                case 2:
-                    return 3;
-                    break;
                 default:
                     return 0;
                     break;
@@ -399,11 +542,59 @@ namespace BeerPong
         private void lever1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //balls.RemoveAt(balls.Count - 2);
+            val = ran.Next(2 - 1 + 1) + 1;
+            if(val == 1)
+            {
+                outputDevice = new WaveOutEvent();
+                outputDevice.PlaybackStopped += OnPlaybackStopped;
+                audioFile = new AudioFileReader(@"..\..\..\Resources\Yamete.mp3");
+                outputDevice.Init(audioFile);
+                outputDevice.Play();
+            }
+            else if (val == 2)
+            {
+                outputDevice = new WaveOutEvent();
+                outputDevice.PlaybackStopped += OnPlaybackStopped;
+                audioFile = new AudioFileReader(@"..\..\..\Resources\Fnaf.mp3");
+                outputDevice.Init(audioFile);
+                outputDevice.Play();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void lever1_MouseDown(object sender, MouseEventArgs e)
+        {
+            lever1.Image = Resource1.BTN2;
+        }
+
+        private void lever1_MouseUp(object sender, MouseEventArgs e)
+        {
+            lever1.Image = Resource1.BTN1;
+        }
+
+        private void resume_MouseClick(object sender, MouseEventArgs e)
+        {
+            outputDevice.Stop();
+            resume.Enabled = false;
+            pause.Enabled = true;
+            PCT_CANVAS.Enabled = true;
+            lever1.Enabled = true;
+            lever1.Visible = true;
+            timerCounter.Text = countdown.ToString();
+            gameTimer.Enabled = true;
+        }
+
+        private void OnPlaybackStopped(object sender, StoppedEventArgs args)
+        {
+            outputDevice = null;
+            //outputDevice.Dispose();
+            //audioFile.Dispose();
+            audioFile = null;
+            
         }
     }
 }

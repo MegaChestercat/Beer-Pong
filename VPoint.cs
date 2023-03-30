@@ -137,7 +137,7 @@ namespace BeerPong
 
             radius =8;
             diameter = radius + radius;
-            c = Color.Red;
+            c = Color.FromArgb(255, 255, 0);
             Mass = 1;
             brush = new SolidBrush(c);
             if (IsPinned)
@@ -158,7 +158,7 @@ namespace BeerPong
 
             radius = size;
             diameter = radius + radius;
-            c = Color.Red;
+            c = Color.FromArgb(255, 255, 0); ;
             Mass = 1;
             brush = new SolidBrush(c);
             if (IsPinned)
