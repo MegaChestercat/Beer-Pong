@@ -1,20 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "++8uJ6jsFzpw4zHXW8tZtpShf+wXF6UD9807TT2ASiqQUPz/TJrAFTDDjI0fbHkq9wdc3XRqtGa9f1piAxHklg==",
+  "dgSpecHash": "1mE+f873sBfxabnV0FLXzPuZsQfH8Hyq3Y6TReiFNOkGkYhach+pSgSQc8VKTgbUIy4K/9d85flq2hDELls1jA==",
   "success": true,
   "projectFilePath": "C:\\Users\\a\\Visual Studio Projects\\BeerPong\\BeerPong.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\a\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
-    "C:\\Users\\a\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
-    "C:\\Users\\a\\.nuget\\packages\\naudio\\2.1.0\\naudio.2.1.0.nupkg.sha512",
-    "C:\\Users\\a\\.nuget\\packages\\naudio.asio\\2.1.0\\naudio.asio.2.1.0.nupkg.sha512",
-    "C:\\Users\\a\\.nuget\\packages\\naudio.core\\2.1.0\\naudio.core.2.1.0.nupkg.sha512",
-    "C:\\Users\\a\\.nuget\\packages\\naudio.midi\\2.1.0\\naudio.midi.2.1.0.nupkg.sha512",
-    "C:\\Users\\a\\.nuget\\packages\\naudio.wasapi\\2.1.0\\naudio.wasapi.2.1.0.nupkg.sha512",
-    "C:\\Users\\a\\.nuget\\packages\\naudio.winforms\\2.1.0\\naudio.winforms.2.1.0.nupkg.sha512",
-    "C:\\Users\\a\\.nuget\\packages\\naudio.winmm\\2.1.0\\naudio.winmm.2.1.0.nupkg.sha512",
-    "C:\\Users\\a\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "C:\\Users\\a\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

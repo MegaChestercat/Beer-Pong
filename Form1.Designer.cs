@@ -46,7 +46,6 @@
             pause = new PictureBox();
             lever1 = new PictureBox();
             start = new PictureBox();
-            PreStartScreen = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)PCT_CANVAS).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -54,7 +53,6 @@
             ((System.ComponentModel.ISupportInitialize)pause).BeginInit();
             ((System.ComponentModel.ISupportInitialize)lever1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)start).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PreStartScreen).BeginInit();
             SuspendLayout();
             // 
             // timer1
@@ -238,13 +236,12 @@
             lever1.Image = Resource1.BTN1;
             lever1.Location = new Point(-1, 258);
             lever1.Name = "lever1";
-            lever1.Size = new Size(60, 80);
+            lever1.Size = new Size(32, 32);
             lever1.SizeMode = PictureBoxSizeMode.Zoom;
             lever1.TabIndex = 15;
             lever1.TabStop = false;
             lever1.Visible = false;
             lever1.MouseClick += lever1_MouseClick;
-            lever1.MouseDoubleClick += lever1_MouseDoubleClick;
             lever1.MouseDown += lever1_MouseDown;
             lever1.MouseUp += lever1_MouseUp;
             // 
@@ -260,25 +257,12 @@
             start.TabStop = false;
             start.MouseClick += start_MouseClick;
             // 
-            // PreStartScreen
-            // 
-            PreStartScreen.BackColor = Color.Black;
-            PreStartScreen.Enabled = false;
-            PreStartScreen.Location = new Point(-1, 110);
-            PreStartScreen.Name = "PreStartScreen";
-            PreStartScreen.Size = new Size(958, 525);
-            PreStartScreen.TabIndex = 17;
-            PreStartScreen.TabStop = false;
-            // 
             // Form1
             // 
             AutoScaleMode = AutoScaleMode.None;
-            BackColor = SystemColors.ControlDark;
-            BackgroundImage = Resource1.bg;
+            BackColor = Color.SaddleBrown;
             ClientSize = new Size(950, 639);
             Controls.Add(start);
-            Controls.Add(PreStartScreen);
-            Controls.Add(lever1);
             Controls.Add(pause);
             Controls.Add(resume);
             Controls.Add(label3);
@@ -291,6 +275,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(KosakoLBL);
             Controls.Add(tonayanLBL);
+            Controls.Add(lever1);
             Controls.Add(PCT_CANVAS);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MaximizeBox = false;
@@ -307,7 +292,6 @@
             ((System.ComponentModel.ISupportInitialize)pause).EndInit();
             ((System.ComponentModel.ISupportInitialize)lever1).EndInit();
             ((System.ComponentModel.ISupportInitialize)start).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PreStartScreen).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -331,6 +315,5 @@
         private PictureBox pause;
         private PictureBox lever1;
         private PictureBox start;
-        private PictureBox PreStartScreen;
     }
 }

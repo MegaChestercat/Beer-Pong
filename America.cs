@@ -1,5 +1,4 @@
-﻿using NAudio.Wave;
-using Timer = System.Timers.Timer;
+﻿using Timer = System.Timers.Timer;
 namespace BeerPong
 {
     public class America
@@ -12,9 +11,6 @@ namespace BeerPong
         private readonly int _sequenceMax;
 
         private readonly Timer _quantum = new Timer();
-
-        private WaveOutEvent outputDevice;
-        private AudioFileReader audioFile;
 
         private int konamiCounter;
 
@@ -43,16 +39,6 @@ namespace BeerPong
             _quantum.Stop();
             _sequenceIndex = 0;
 
-        }
-
-        
-
-        private void OnPlaybackStopped(object sender, StoppedEventArgs args)
-        {
-            //outputDevice.Dispose();
-            outputDevice = null;
-            //audioFile.Dispose();
-            audioFile = null;
         }
     }
 }

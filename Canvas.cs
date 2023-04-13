@@ -48,6 +48,11 @@ namespace BeerPong
 
         public void DrawPixel(int x, int y, Color c)
         {
+            if (x < 0 || x >= Width || y < 0 || y >= Height)
+            {
+                return;
+            }
+
             int res = (int)((x * pixelFormatSize) + (y * stride)); //x an y point of your image. Stride is the complete size of a row and its multiply by x that is the number of rows
 
             bits[res + 0] = c.B;
@@ -202,24 +207,5 @@ namespace BeerPong
                 }
             }
         }
-
-        public void DrawShadedTriangle(Point p1, Point p2, Point p3, Color c)
-        {
-            if (p2.Y < p1.Y) Swap(ref p2, ref p1);
-            if (p3.Y < p1.Y) Swap(ref p3, ref p1);
-            if (p3.Y < p2.Y) Swap(ref p3, ref p2);
-
-            Double[] x01, h01, x12, h12, x02, h02, x012;
-
-            x01 = Interpolate(p1.Y, p1.X, p2.Y, p2.X);
-            h01 = Interpolate(p1.Y, p1.X, p2.Y, p2.X);
-
-            x12 = Interpolate(p2.Y, p2.X, p3.Y, p3.X);
-            h12 = Interpolate(p2.Y, p2.X, p3.Y, p3.X);
-
-            x02 = Interpolate(p1.Y, p1.X, p3.Y, p3.X);
-            h02 = Interpolate(p1.Y, p1.X, p3.Y, p3.X);
-        }
-
     }
 }

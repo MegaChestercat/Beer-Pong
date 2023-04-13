@@ -1,5 +1,4 @@
-﻿using NAudio.Wave;
-using NAudio.Wave.SampleProviders;
+﻿using System.Media;
 using Timer=System.Timers.Timer;
 namespace BeerPong{
     public class KonamiSequence
@@ -13,8 +12,7 @@ namespace BeerPong{
 
         private readonly Timer _quantum = new Timer();
 
-        private WaveOutEvent outputDevice;
-        private AudioFileReader audioFile;
+        public SoundPlayer sound;
 
         private int konamiCounter;
 
@@ -42,7 +40,6 @@ namespace BeerPong{
         {
             _quantum.Stop();
             _sequenceIndex = 0;
-
         }
 
         public void EasterEgg()
@@ -50,112 +47,33 @@ namespace BeerPong{
             switch (konamiCounter)
             {
                 case 0:
-                    outputDevice = new WaveOutEvent();
-                    outputDevice.PlaybackStopped += OnPlaybackStopped;
-                    audioFile = new AudioFileReader(@"..\..\..\Resources\urss.mp3");
-                    outputDevice.Init(audioFile);
-                    outputDevice.Play();
+                    sound = new SoundPlayer(Resource1.urss);
+                    sound.Play();
                     konamiCounter++;
                     break;
                 case 1:
-                    if(outputDevice == null && audioFile == null)
-                    {
-                        outputDevice = new WaveOutEvent();
-                        outputDevice.PlaybackStopped += OnPlaybackStopped;
-                        audioFile = new AudioFileReader(@"..\..\..\Resources\dross.mp3");
-                        outputDevice.Init(audioFile);
-                        outputDevice.Play();
-                    }
-                    else
-                    {
-                        outputDevice.Stop();
-                        outputDevice = new WaveOutEvent();
-                        outputDevice.PlaybackStopped += OnPlaybackStopped;
-                        audioFile = new AudioFileReader(@"..\..\..\Resources\dross.mp3");
-                        outputDevice.Init(audioFile);
-                        outputDevice.Play();
-                    }
-                    
+                    sound = new SoundPlayer(Resource1.dross);
+                    sound.Play();
                     konamiCounter++;
                     break;
                 case 2:
-                    if (outputDevice == null && audioFile == null)
-                    {
-                        outputDevice = new WaveOutEvent();
-                        outputDevice.PlaybackStopped += OnPlaybackStopped;
-                        audioFile = new AudioFileReader(@"..\..\..\Resources\lavender.mp3");
-                        outputDevice.Init(audioFile);
-                        outputDevice.Play();
-                    }
-                    else
-                    {
-                        outputDevice.Stop();
-                        outputDevice = new WaveOutEvent();
-                        outputDevice.PlaybackStopped += OnPlaybackStopped;
-                        audioFile = new AudioFileReader(@"..\..\..\Resources\lavender.mp3");
-                        outputDevice.Init(audioFile);
-                        outputDevice.Play();
-                    }
+                    sound = new SoundPlayer(Resource1.lavender);
+                    sound.Play();
                     konamiCounter++;
                     break;
                 case 3:
-                    if (outputDevice == null && audioFile == null)
-                    {
-                        outputDevice = new WaveOutEvent();
-                        outputDevice.PlaybackStopped += OnPlaybackStopped;
-                        audioFile = new AudioFileReader(@"..\..\..\Resources\scream.mp3");
-                        outputDevice.Init(audioFile);
-                        outputDevice.Play();
-                    }
-                    else
-                    {
-                        outputDevice.Stop();
-                        outputDevice = new WaveOutEvent();
-                        outputDevice.PlaybackStopped += OnPlaybackStopped;
-                        audioFile = new AudioFileReader(@"..\..\..\Resources\scream.mp3");
-                        outputDevice.Init(audioFile);
-                        outputDevice.Play();
-                    }
+                    sound = new SoundPlayer(Resource1.scream);
+                    sound.Play();
                     konamiCounter++;
                     break;
                 case 4:
-                    if (outputDevice == null && audioFile == null)
-                    {
-                        outputDevice = new WaveOutEvent();
-                        outputDevice.PlaybackStopped += OnPlaybackStopped;
-                        audioFile = new AudioFileReader(@"..\..\..\Resources\selene.mp3");
-                        outputDevice.Init(audioFile);
-                        outputDevice.Play();
-                    }
-                    else
-                    {
-                        outputDevice.Stop();
-                        outputDevice = new WaveOutEvent();
-                        outputDevice.PlaybackStopped += OnPlaybackStopped;
-                        audioFile = new AudioFileReader(@"..\..\..\Resources\selene.mp3");
-                        outputDevice.Init(audioFile);
-                        outputDevice.Play();
-                    }
+                    sound = new SoundPlayer(Resource1.selene);
+                    sound.Play();
                     konamiCounter++;
                     break;
                 case 5:
-                    if (outputDevice == null && audioFile == null)
-                    {
-                        outputDevice = new WaveOutEvent();
-                        outputDevice.PlaybackStopped += OnPlaybackStopped;
-                        audioFile = new AudioFileReader(@"..\..\..\Resources\walrus.mp3");
-                        outputDevice.Init(audioFile);
-                        outputDevice.Play();
-                    }
-                    else
-                    {
-                        outputDevice.Stop();
-                        outputDevice = new WaveOutEvent();
-                        outputDevice.PlaybackStopped += OnPlaybackStopped;
-                        audioFile = new AudioFileReader(@"..\..\..\Resources\walrus.mp3");
-                        outputDevice.Init(audioFile);
-                        outputDevice.Play();
-                    }
+                    sound = new SoundPlayer(Resource1.walrus);
+                    sound.Play();
                     konamiCounter++;
                     break;
                 case 6:
@@ -163,14 +81,6 @@ namespace BeerPong{
                     break;
             }
             
-        }
-
-        private void OnPlaybackStopped(object sender, StoppedEventArgs args)
-        {
-            //outputDevice.Dispose();
-            outputDevice = null;
-            //audioFile.Dispose();
-            audioFile = null;
         }
     }
 }

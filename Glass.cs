@@ -20,6 +20,7 @@ namespace BeerPong
         Pen alarm = new Pen(Color.Red, 10);
         Color color, c1;
         SolidBrush brush;
+        readonly Image redGlass = Resource1.red;
         
 
         public Glass(int x, int y, int id, bool pin)
@@ -105,39 +106,6 @@ namespace BeerPong
             poles.Add(new VPole(a, l));
             poles.Add(new VPole(f, k));
             poles.Add(new VPole(f, l));
-
-            /*
-            poles.Add(new VPole(b, f));
-            poles.Add(new VPole(b, g));
-            poles.Add(new VPole(b, h));
-            poles.Add(new VPole(b, i));
-            poles.Add(new VPole(b, j));
-            poles.Add(new VPole(b, k));
-            poles.Add(new VPole(b, l));
-
-            poles.Add(new VPole(c, f));
-            poles.Add(new VPole(c, g));
-            poles.Add(new VPole(c, h));
-            poles.Add(new VPole(c, i));
-            poles.Add(new VPole(c, j));
-            poles.Add(new VPole(c, k));
-            poles.Add(new VPole(c, l));
-
-            poles.Add(new VPole(d, f));
-            poles.Add(new VPole(d, g));
-            poles.Add(new VPole(d, h));
-            poles.Add(new VPole(d, i));
-            poles.Add(new VPole(d, j));
-            poles.Add(new VPole(d, k));
-            poles.Add(new VPole(d, l));
-
-            poles.Add(new VPole(e, f));
-            poles.Add(new VPole(e, g));
-            poles.Add(new VPole(e, h));
-            poles.Add(new VPole(e, i));
-            poles.Add(new VPole(e, j));
-            poles.Add(new VPole(e, k));
-            poles.Add(new VPole(e, l));*/
 
             poles.Add(new VPole(a, b));
             poles.Add(new VPole(b, c));
@@ -302,39 +270,7 @@ namespace BeerPong
             colPoles.Add(new VPole(new VPoint((int)pts[0].X, (int)pts[0].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[5].X, (int)pts[5].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[5].X, (int)pts[5].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
-            /*
-            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[5].X, (int)pts[5].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[6].X, (int)pts[6].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[7].X, (int)pts[7].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[8].X, (int)pts[8].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[9].X, (int)pts[9].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
-
-            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[5].X, (int)pts[5].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[6].X, (int)pts[6].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[7].X, (int)pts[7].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[8].X, (int)pts[8].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[9].X, (int)pts[9].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[2].X, (int)pts[2].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
-
-            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[5].X, (int)pts[5].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[6].X, (int)pts[6].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[7].X, (int)pts[7].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[8].X, (int)pts[8].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[9].X, (int)pts[9].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[3].X, (int)pts[3].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
-
-            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[5].X, (int)pts[5].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[6].X, (int)pts[6].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[7].X, (int)pts[7].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[8].X, (int)pts[8].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[9].X, (int)pts[9].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[10].X, (int)pts[10].Y)));
-            colPoles.Add(new VPole(new VPoint((int)pts[4].X, (int)pts[4].Y), new VPoint((int)pts[11].X, (int)pts[11].Y)));
-            */
+           
 
             colPoles.Add(new VPole(new VPoint((int)pts[0].X, (int)pts[0].Y), new VPoint((int)pts[1].X, (int)pts[1].Y)));
             colPoles.Add(new VPole(new VPoint((int)pts[1].X, (int)pts[1].Y), new VPoint((int)pts[2].X, (int)pts[2].Y)));
@@ -392,7 +328,7 @@ namespace BeerPong
             //p.Width = a.Diameter;
             //canvas.g.DrawPolygon(p, orderedPts);
             //canvas.g.FillPolygon(brush, orderedPts);
-            canvas.g.DrawImage(Resource1.glass, pts[0].X, pts[0].Y, 45, 60);
+            canvas.g.DrawImage(redGlass, pts[0].X, pts[0].Y, 45, 60);
         }
     }
 }

@@ -1,7 +1,6 @@
 using System.Linq;
+using System.Media;
 using System.Runtime.CompilerServices;
-using NAudio.Wave;
-using NAudio.Wave.SampleProviders;
 
 namespace BeerPong
 {
@@ -19,11 +18,6 @@ namespace BeerPong
         int countdown = 180;
         public int res;
         public int points1, points2 = 0;
-        private WaveOutEvent outputDevice;
-        private AudioFileReader audioFile;
-
-
-
 
         private readonly KonamiSequence _konamiSequence = new KonamiSequence();
         private readonly America _americaSequence = new America();
@@ -170,11 +164,8 @@ namespace BeerPong
             if (_americaSequence.IsCompletedBy(e.KeyCode))
             {
                 MessageBox.Show("Playing CUMBIA DE LAS ÁGUILAS DEL AMÉRICA...");
-                outputDevice = new WaveOutEvent();
-                outputDevice.PlaybackStopped += OnPlaybackStopped;
-                audioFile = new AudioFileReader(@"..\..\..\Resources\america.mp3");
-                outputDevice.Init(audioFile);
-                outputDevice.Play();
+                _konamiSequence.sound = new SoundPlayer(Resource1.america);
+                _konamiSequence.sound.Play();
             }
         }
 
@@ -451,7 +442,8 @@ namespace BeerPong
 
         private void start_MouseClick(object sender, MouseEventArgs e)
         {
-            PreStartScreen.Visible = false;
+            _konamiSequence.sound = new SoundPlayer(Resource1.bg);
+            _konamiSequence.sound.Play();
             start.Visible = false;
             start.Enabled = false;
             resume.Visible = true;
@@ -473,23 +465,8 @@ namespace BeerPong
             PCT_CANVAS.Enabled = false;
             gameTimer.Enabled = false;
 
-            if (outputDevice == null && audioFile == null)
-            {
-                outputDevice = new WaveOutEvent();
-                outputDevice.PlaybackStopped += OnPlaybackStopped;
-                audioFile = new AudioFileReader(@"..\..\..\Resources\pause_sound.mp3");
-                outputDevice.Init(audioFile);
-                outputDevice.Play();
-            }
-            else
-            {
-                outputDevice.Stop();
-                outputDevice = new WaveOutEvent();
-                outputDevice.PlaybackStopped += OnPlaybackStopped;
-                audioFile = new AudioFileReader(@"..\..\..\Resources\pause_sound.mp3");
-                outputDevice.Init(audioFile);
-                outputDevice.Play();
-            }
+            _konamiSequence.sound = new SoundPlayer(Resource1.pause_sound);
+            _konamiSequence.sound.Play();
 
         }
 
@@ -537,16 +514,6 @@ namespace BeerPong
             balls.Add(new VPoint(e.X, e.Y, balls.Count, 12));
         }
 
-        private void lever1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            //balls.RemoveAt(balls.Count - 2);
-            outputDevice = new WaveOutEvent();
-            outputDevice.PlaybackStopped += OnPlaybackStopped;
-            audioFile = new AudioFileReader(@"..\..\..\Resources\Fnaf.mp3");
-            outputDevice.Init(audioFile);
-            outputDevice.Play();
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -564,7 +531,8 @@ namespace BeerPong
 
         private void resume_MouseClick(object sender, MouseEventArgs e)
         {
-            outputDevice.Stop();
+            _konamiSequence.sound = new SoundPlayer(Resource1.bg);
+            _konamiSequence.sound.Play();
             resume.Enabled = false;
             pause.Enabled = true;
             PCT_CANVAS.Enabled = true;
@@ -574,40 +542,16 @@ namespace BeerPong
             gameTimer.Enabled = true;
         }
 
-        private void OnPlaybackStopped(object sender, StoppedEventArgs args)
-        {
-            outputDevice = null;
-            //outputDevice.Dispose();
-            //audioFile.Dispose();
-            audioFile = null;
-
-        }
-
-        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
-        {
-            outputDevice = new WaveOutEvent();
-            outputDevice.PlaybackStopped += OnPlaybackStopped;
-            audioFile = new AudioFileReader(@"..\..\..\Resources\Yamete.mp3");
-            outputDevice.Init(audioFile);
-            outputDevice.Play();
-        }
-
         private void pictureBox2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            outputDevice = new WaveOutEvent();
-            outputDevice.PlaybackStopped += OnPlaybackStopped;
-            audioFile = new AudioFileReader(@"..\..\..\Resources\compa.mp3");
-            outputDevice.Init(audioFile);
-            outputDevice.Play();
+            _konamiSequence.sound = new SoundPlayer(Resource1.compa);
+            _konamiSequence.sound.Play();
         }
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            outputDevice = new WaveOutEvent();
-            outputDevice.PlaybackStopped += OnPlaybackStopped;
-            audioFile = new AudioFileReader(@"..\..\..\Resources\Yamete.mp3");
-            outputDevice.Init(audioFile);
-            outputDevice.Play();
+            _konamiSequence.sound = new SoundPlayer(Resource1.tripaloski);
+            _konamiSequence.sound.Play();
         }
     }
 }
